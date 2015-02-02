@@ -48,7 +48,10 @@ console.log(megajason);//TODO reorder by date
 
 
 var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
-var total  = [[],[],[],[],[],[],[]];
+total = [];
+for ( var i = 0; i < parties.length; i++ ) {
+	total.push([]);
+}
 
 for (var key in megajason) { //itera por la unica matriz que hay: data
 	var test = (megajason[key]);
