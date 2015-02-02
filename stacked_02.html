@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PageOneX Color Corrupción</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?1.29.1"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.time.js?1.29.1"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?1.29.1"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <style type="text/css">
+
+svg {
+  width: 2500px;
+  height: 400px;
+  border: solid 1px #ccc;
+  font: 10px sans-serif;
+  shape-rendering: crispEdges;
+}
+
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+var w = 2500,
+    h = 400,
+    p = [20, 50, 30, 20],
+    x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
+    y = d3.scale.linear().range([0, h - p[0] - p[2]]),
+    color = d3.scale.ordinal().range(["blue", "red", "orange","darkgreen","grey"]),
+    parse = d3.time.format("%Y-%m-%d").parse,
+    format = d3.time.format("%d");
+    //parse = d3.time.format("%Y-%m-%d").parse
+
+var svg = d3.select("body").append("svg:svg")
+    .attr("width", w)
+    .attr("height", h)
+  .append("svg:g")
+    .attr("transform", "translate(" + p[3] + "," + (h - p[2]) + ")");
+
+
+// http://pageonex.com/numeroteca/corrupcion-spain-enero-2013/export.json
+
+// http://pageonex.com/numeroteca/corrupcion-espana-junio-2013/export.json
+
+// Merge object2 into object1
+/*var theObject =  
+	$.extend( 
+		JSON.parse('pageonex.com/numeroteca/corrupcion-spain-enero-2013/export.json'), 
+		JSON.parse('pageonex.com/numeroteca/corrupcion-espana-junio-2013/export.json') 
+	);
+console.log("the object: ",theObject);*/
+
+//Set up stack method
+var stack = d3.layout.stack();
+
+//d3.csv("crimea.csv", function(crimea) {
+d3.json("total20132014.json", function(megajason) { //2013total.json
+
+console.log(megajason);//TODO reorder by date
+
+var total  = [[],[],[],[],[]];
+//console.log(total[0]);
+var parties = ['PP','PSOE','CiU','Casa Real','Otros']; //,'Bankia'];
+
+for (var key in megajason) { //itera por la unica matriz que hay: data
+	var test = (megajason[key]);
+	//console.log(test);
+	for (var key in test) { //itera por los dias
+		//console.log(key); //el dia
+		//console.log(test[key]["Total"]);
+		theDay = key;
+		var totalday = test[key]["Total"]; //el objeto "Total" de cada dia. Si se cambia Total por nombre de periodico //TODO itinerate through media
+		//console.log(totalday);
+		//var total[key] = test[key]["Total"];
+		for (var key in totalday) { //TODO flter by period
+			//console.log(key,totalday[key]);
+			//TODO convert in array of parties and iterate with foreach and i
+			var coverage = totalday[key];
+			for ( var i = 0; i < parties.length; i++ ) {
+				if (key == parties[i] ) {
+					//console.log('itinerando: ', i, theDay, parties[i] ,coverage);
+					var date = new Date(theDay);
+					//console.log("mes: ", date.getMonth()+1);
+					//var dd = new Date();
+					//console.log(dd);
+					var newElement = {};
+					newElement.y = coverage;
+					newElement.date = theDay;
+					newElement.party = parties[i];
+					newElement.month = date.getMonth();
+					newElement.year = date.getFullYear();
+					total[i].push(newElement);
+				}
+			}
+			/*if (key == 'PP') {
+				//console.log(theDay, 'PP',totalday[key]);
+				//total[1][i] = totalday[key];
+				var newElement = {};
+				newElement.y = totalday[key];
+				newElement.date = theDay;
+				newElement.party = 'PP';
+				total[0].push(newElement);
+			}*/
+		}
+	}
+}
+
+console.log(total);
+for ( var i = 0; i < total.length; i++ ){
+	total[i].sort(function(a,b){
+		// Turn your strings into dates, and then subtract them
+		// to get a value that is either negative, positive, or zero.
+		return new Date(a.date) - new Date(b.date);
+	});
+}
+//	console.log(total[0]);
+
+var years = ['2013','2014'];
+//var sum201411 = 0;
+//var sum11 = 0;
+//var sum12 = 0;
+var sumMonth = [[],[],[],[],[],[],[],[],[],[],[],[]];
+//var	sum2013 = 0;
+//var	sum2014 = 0;
+var sumYear = [0,0];
+var countDays = [0,0];
+
+var stats  = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
+for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
+	
+	for ( var b = 0; b < years.length; b++ ) {//iterate through years
+		var newElement = {}; //creates an element per party
+		//var days2013 = 0;
+		//var days2014 = 0;
+		sumYear[b] = 0;
+		countDays[b] = 0;
+		newElement.year = years[b];
+		sumMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
+		for ( var i = 0; i < total[0].length; i++ ) { //iterate through all the days i
+			if ( total[a][i]['year'] == years[b] ) {//values for year 2014 TODO iterate through years and store the value
+				//sum2014 += total[a][i]['y']; //total[0] is PP
+				//i2014++; //counts days in 2014
+				sumYear[b] += total[a][i]['y'];
+				countDays[b]++;
+				m = parseFloat(total[a][i]['month']);
+				sumMonth[m] += total[a][i]['y'];
+			}
+				//console.log(countDays[b]);
+				//sum2013 += total[a][i]['y'];
+				//days2013++;
+			//} else { //values for year 2013
+				//sum2014 += total[a][i]['y']; //total[0] is PP
+				//days2014++;
+				//for ( var m = 0; m < 12; m++ ) {
+				
+					//if (total[a][i]['month'] == m) {
+				
+					//}
+						//month = total[a][i]['month'];
+				//}
+				/*if (total[a][i]['month'] == '0') {//TODO loop through months
+					sum11 += total[a][i]['y'];
+				}
+				if (total[a][i]['month'] == '11') {//TODO loop through months
+					sum12 += total[a][i]['y'];
+				}*/
+			//}
+			//}
+		}
+		
+		newElement.sumYear = sumYear[b];
+		newElement.sumMonth = sumMonth;
+		newElement.daysPerYear = countDays[b];
+		newElement.avgYear = sumYear[b]/countDays[b];
+		newElement.party = parties[a];
+		//newElement.sum11 = sum11;
+		//newElement.sum201411 = sum201411;
+		//newElement.year = date.getFullYear();
+		stats[a][b].push(newElement); //pushes and elenmen per party
+	}
+	
+}
+
+console.log("stats:", stats);
+//var data = "{name: 'Bob', occupation: 'Plumber'}";
+var data = stats[0][0][0]['party'].toString();
+console.log(data);
+//var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+//window.open(url, '_blank');
+//window.focus();
+/*var file = new File(script.file.parent, 'stats.json');
+print(file);
+// If file exists, we need to remove it first in order to overwrite its content.
+if (file.exists())
+    file.remove();
+file.open();
+file.write(Json.encode(stats));
+file.close();*/
+
+
+//For json
+dataset = total;
+stack(dataset);
+//console.log(dataset);
+
+// Compute the x-domain (by date) and y-domain (by top).
+x.domain(
+	dataset[0].map(function(d) { return d.x; })
+);//coge la primerade las 3 array, podŕia ser 1 o 2 tambien
+y.domain([
+	0, //valor minimo
+	d3.max(
+		dataset[dataset.length - 1], function(d) { return d.y0 + d.y; console.log(d.y0 + d.y);} //coge la array ultima que ya tienen todos los valors acumulados
+	) //valor maximo
+]); //usa la ultima array, la que tiene los valores de las otras ya acumulados para calcular el maximos valos de y
+
+groups = svg.selectAll(".cause").data(dataset);
+groups.enter().append("g")
+        .attr("class","cause")
+        .style("fill",function(d,i) {
+            return color(i);
+        });
+rect = groups.selectAll("rect").data(function(d){return d;});
+
+rect.enter()
+  .append("rect")
+  .attr("x",function(d,i) { return i*w/dataset[0].length-20; })
+  .attr("y", function(d) { return -y(d.y0) - y(d.y); })
+  .attr("width",(w - p[1] - p[3])/(dataset[0].length*1.15))
+  .attr("height", function(d) { return y(d.y); })
+  .attr("title","xxx")
+  .style("fill-opacity",1);
+
+/*
+  // Add a group for each cause.
+  var cause = svg.selectAll("g.cause")
+      .data(dataset)
+    .enter().append("svg:g")
+      .attr("class", "cause")
+      .style("fill", function(d, i) { return color(i); }) //colorea segun la escala z
+      .style("stroke", function(d, i) { return d3.rgb(color(i)).darker(); });
+
+  // Add a rect for each date.
+  var rect = cause.selectAll("rect")
+      .data(Object)
+    .enter().append("svg:rect")
+      .attr("x", function(d) { return x(d.x); })
+      .attr("y", function(d) { return -y(d.y0) - y(d.y); })
+      .attr("height", function(d) { return y(d.y); })
+      //.attr("width", x.rangeBand()); //
+      .attr("width", 200); //
+*/
+
+
+  // Add a label per date.
+  var label = svg.selectAll("text")
+      .data(x.domain())
+    .enter().append("svg:text")
+      //.attr("x", function(d) { return x(d) + x.rangeBand() / 2; })
+      .attr("x",function(d,i) { return i*w/dataset[0].length-20; })
+      .attr("y", 6)
+      .attr("text-anchor", "middle")
+      .attr("dy", ".71em")
+      .text(format);
+
+  // Add y-axis rules.
+  var rule = svg.selectAll("g.rule")
+      .data(y.ticks(5))
+    .enter().append("svg:g")
+      .attr("class", "rule")
+      .attr("transform", function(d) { return "translate(0," + -y(d) + ")"; });
+
+  rule.append("svg:line")
+      .attr("x2", w - p[1] - p[3])
+      .style("stroke", function(d) { return d ? "#fff" : "#000"; })
+      .style("stroke-opacity", function(d) { return d ? .7 : null; });
+
+  rule.append("svg:text")
+      .attr("x", w - p[1] - p[3] + 6)
+      .attr("dy", ".35em")
+      .text(d3.format(",d"));
+      
+      
+});
+
+
+
+
+    </script>
+  </body>
+</html>
+
