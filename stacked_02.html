@@ -83,7 +83,11 @@ var sumMonth = [[],[],[],[],[],[],[],[],[],[],[],[]];
 var sumYear = [0,0];
 var countDays = [0,0];
 
-var stats  = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
+var stats = [];
+for ( var i = 0; i < parties.length; i++ ) {
+	stats.push([[],[]]);
+}
+
 for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 	stats[a].push({"party":parties[a]});
 	for ( var b = 0; b < years.length; b++ ) {//iterate through years
@@ -140,7 +144,11 @@ for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 
 console.log("stats:", stats);
 
-var perYear = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
+var perYear = [];
+for ( var i = 0; i < parties.length; i++ ) {
+	perYear.push([[],[]]);
+}
+
 for (var i = 0; i < stats.length; i++) {
 	for (var j = 0; j < years.length; j++) {
 		perYear[i][j] = stats[i][j][1]['avgYear'];
@@ -148,7 +156,10 @@ for (var i = 0; i < stats.length; i++) {
 }
 console.log("perYear",perYear);
 
-var perMonth = [[],[],[],[],[]];
+var perMonth = [];
+for ( var i = 0; i < parties.length; i++ ) {
+	perMonth.push([]);
+}
 for (var i = 0; i < stats.length; i++) { //per party
 	for (var j = 0; j < years.length; j++) { //per year
 		var everyMonth = [];
@@ -159,7 +170,11 @@ for (var i = 0; i < stats.length; i++) { //per party
 }
 console.log("perMonth",perMonth);
 
-perMonthFinal = [[],[],[],[],[]];
+perMonthFinal = [];
+for ( var i = 0; i < parties.length; i++ ) {
+	perMonthFinal.push([]);
+}
+
 for (var key = 0; key < stats.length; key++) {
 	for (var i = 0; i < 12; i++) {
 		perMonthFinal[key].push({"y":perMonth[key][0][0][i]});
