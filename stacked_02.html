@@ -184,20 +184,18 @@ for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 
 console.log("stats:", stats);
 //var data = "{name: 'Bob', occupation: 'Plumber'}";
-var data = stats[0][0][0]['party'].toString();
-console.log(data);
-//var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
-//window.open(url, '_blank');
-//window.focus();
-/*var file = new File(script.file.parent, 'stats.json');
-print(file);
-// If file exists, we need to remove it first in order to overwrite its content.
-if (file.exists())
-    file.remove();
-file.open();
-file.write(Json.encode(stats));
-file.close();*/
+var perYear = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
+for (var i = 0; i < stats.length; i++) {
+	for (var j = 0; j < years.length; j++) {
+		perYear[i][j] = stats[i][j][0]['avgYear'];
+	}
+}
+console.log("perYear",perYear);
 
+var printThis = JSON.stringify(stats); //convert object to string
+var url = 'data:text/json;charset=utf8,' + encodeURIComponent(printThis); //saves file
+window.open(url, '_blank');
+window.focus();
 
 //For json
 dataset = total;
