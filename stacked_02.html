@@ -114,7 +114,7 @@ for ( var i = 0; i < total.length; i++ ){
 		return new Date(a.date) - new Date(b.date);
 	});
 }
-//	console.log(total[0]);
+console.log("total[0]",total[0]);
 
 var years = ['2013','2014'];
 //var sum201411 = 0;
@@ -128,8 +128,9 @@ var countDays = [0,0];
 
 var stats  = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
 for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
-	
+	stats[a].push({"party":parties[a]});
 	for ( var b = 0; b < years.length; b++ ) {//iterate through years
+		stats[a][b].push({"year":years[b]});
 		var newElement = {}; //creates an element per party
 		//var days2013 = 0;
 		//var days2014 = 0;
@@ -183,16 +184,39 @@ for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 }
 
 console.log("stats:", stats);
-//var data = "{name: 'Bob', occupation: 'Plumber'}";
+
 var perYear = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
 for (var i = 0; i < stats.length; i++) {
 	for (var j = 0; j < years.length; j++) {
-		perYear[i][j] = stats[i][j][0]['avgYear'];
+		perYear[i][j] = stats[i][j][1]['avgYear'];
 	}
 }
 console.log("perYear",perYear);
 
-var printThis = JSON.stringify(stats); //convert object to string
+var perMonth = [[],[],[],[],[]];
+for (var i = 0; i < stats.length; i++) { //per party
+	for (var j = 0; j < years.length; j++) { //per year
+		var everyMonth = [];
+		everyMonth.push(stats[i][j][1]['sumMonth']); //value of one party in one month
+		//console.log(stats[i][j][1]['sumMonth']);
+		perMonth[i].push(everyMonth);
+	}
+}
+console.log("perMonth",perMonth);
+
+perMonthFinal = [[],[],[],[],[]];
+for (var key = 0; key < stats.length; key++) {
+	for (var i = 0; i < 12; i++) {
+		perMonthFinal[key].push({"y":perMonth[key][0][0][i]});
+		//perMonthFinal.push(perMonth[key][0][0]);
+		perMonthFinal[key] = perMonthFinal[key].concat({"y":perMonth[key][1][0][i]});
+	}
+}
+console.log("perMonthFinal",perMonthFinal);
+
+
+//Convert an object to file 
+var printThis = JSON.stringify(perMonthFinal); //convert object to string
 var url = 'data:text/json;charset=utf8,' + encodeURIComponent(printThis); //saves file
 window.open(url, '_blank');
 window.focus();
