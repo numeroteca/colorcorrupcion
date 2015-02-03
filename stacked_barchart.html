@@ -20,49 +20,45 @@
 		}
 		rect:hover {
 			cursor:pointer;
-			
 			opacity: 0.4;
 		}
 
     </style>
   </head>
-  <body>
-  	<h1>El Color de la Corrupci&oacute;n
-			<small>
-				<span class="label label-default" style="background-color:blue">PP</span> 
-				<span class="label label-default" style="background-color:red">PSOE</span> 
-				<span class="label label-default" style="background-color:orange">CiU</span> 
-				<span class="label label-default" style="background-color:darkgreen">Casa Real</span> 
-				<span class="label label-default" style="background-color:lime">Bankia</span> 
-				<span class="label label-default" style="background-color:#FBBBB9">UGT-A y CCOO</span> 
-				<span class="label label-default" style="background-color:grey">Otros</span> 
-			</small>
-  	</h1>
-  	<p>Cobertura de corrupci&oacute;n en portadas</p>
-		<div class="btn-group">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					 Selecciona peri&oacute;dico <span class="caret"></span>
- 				</button>
-				<ul class="dropdown-menu" role="menu">
+  <body class="container-fluid">
+  	<div class="row">
+  		<div class="col-md-12">
+				<h1>El Color de la Corrupci&oacute;n
+					<small>
+						<span class="label label-default" style="background-color:blue">PP</span> 
+						<span class="label label-default" style="background-color:red">PSOE</span> 
+						<span class="label label-default" style="background-color:orange">CiU</span> 
+						<span class="label label-default" style="background-color:darkgreen">Casa Real</span> 
+						<span class="label label-default" style="background-color:lime">Bankia</span> 
+						<span class="label label-default" style="background-color:#FBBBB9">UGT-A y CCOO</span> 
+						<span class="label label-default" style="background-color:grey">Otros</span> 
+					</small>
+				</h1>
+				<p>Cobertura de corrupci&oacute;n en portadas de prensa.</p>
+				<ul class="nav nav-pills" role="menu">
 					<li><a class="m" value="Total" href="#">Media de todos los peri&oacute;dicos</a></li>
- 					<li><a class="m" value="El Pais" href="#">El Pa&iacute;s</a></li>
- 					<li><a class="m" value="El Mundo" href="#">El Mundo</a></li>
-  				<li><a class="m" value="ABC" href="#">ABC</a></li>
-  				<li><a class="m" value="La Razon" href="#">La Raz&oacute;n</a></li>
-  				<li><a class="m" value="La Gaceta" href="#">La Gaceta</a></li>
-  				<li><a class="m" value="La Vanguardia" href="#">La Vanguardia</a></li>
-  				<li><a class="m" value="El Periodico" href="#">El Peri&oacute;dico</a></li>
-  				<li><a class="m" value="Ara" href="#">Ara</a></li>
-			</ul>
-		</div>
-					
-    <script type="text/javascript">
+					<li><a class="m" value="El Pais" href="#">El Pa&iacute;s</a></li>
+					<li><a class="m" value="El Mundo" href="#">El Mundo</a></li>
+					<li><a class="m" value="ABC" href="#">ABC</a></li>
+					<li><a class="m" value="La Razon" href="#">La Raz&oacute;n</a></li>
+					<li><a class="m" value="La Gaceta" href="#">La Gaceta</a></li>
+					<li><a class="m" value="La Vanguardia" href="#">La Vanguardia</a></li>
+					<li><a class="m" value="El Periodico" href="#">El Peri&oacute;dico</a></li>
+					<li><a class="m" value="Ara" href="#">Ara</a></li>
+				</ul>
+				<div id="datavis"></div>
+    		<script type="text/javascript">
 //On click, update with new data
 
 //initially based on http://bl.ocks.org/mbostock/1134768 and http://bl.ocks.org/anupsavvy/9513382
 var w = 1500,
     h = 400,
-    p = [20, 50, 30, 20],
+    p = [20, 100, 30, 20],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
     colors = ["blue", "red", "orange","darkgreen","lime","#FBBBB9","grey"],
@@ -71,9 +67,10 @@ var w = 1500,
     //parties = {'PP':"blue",'PSOE':"red",'CiU':"orange",'Casa Real':"darkgreen",'Bankia':"lime",'UGT-A y CCOO':"#FBBBB9",'Otros':"grey};
     //parse = d3.time.format("%m-%Y").parse,
     format = d3.time.format("%b");
+    var formato = d3.time.format("%m-%Y");
     //parse = d3.time.format("%Y-%m-%d").parse
 
-var svg = d3.select("body").append("svg:svg")
+var svg = d3.select("#datavis").append("svg:svg")
     .attr("width", w)
     .attr("height", h)
   .append("svg:g")
@@ -152,28 +149,12 @@ y.domain([
 	) */ //valor maximo
 ]); //usa la ultima array, la que tiene los valores de las otras ya acumulados para calcular el maximos valos de y
 
-
-/*var xAxis = d3.svg.axis()
-				   .scale(x)
-				   .orient("bottom")
-				   .ticks(24)
-				   .tickFormat(d3.time.format("%b"));
-   
-d3.append("g")
-	.attr("class","x axis")
-	.attr("transform","translate(40," + (0) + ")")
-	.call(xAxis);*/
-var formato = d3.time.format("%m-%Y");
-
 svg.selectAll("text")
    .data(dataset[0])
    .enter()
    .append("text")
    .text(function(d) {
-        //return d.x;
         return formato(new Date(d.x));
-        //return x(d) + x.rangeBand() / 2;
-        //return "xx";
    })
    .attr("x", function(d, i) {
         //return i * (w / dataset[0].length);
@@ -192,8 +173,6 @@ groups.selectAll("rect").data(function(d){return d;}).remove();
 
 rect = groups.selectAll("rect").data(function(d){return d;});
 
-
-
 rect.enter()
   .append("rect")
   //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
@@ -201,7 +180,7 @@ rect.enter()
   .attr("y", function(d) { return -y(d.y0) - y(d.y); })
   .attr("width",(w - p[1] - p[3])/(dataset[0].length*1.15))
   .attr("height", function(d) { return y(d.y); })
-  .attr("title",function(d) { return d.party + ": " + d.y.toPrecision(3) + "\nMes: " + formato(new Date(d.x)); })
+  .attr("title",function(d) { return d.party + ": " + d.y.toPrecision(3) + " portadas en este mes\n" + formato(new Date(d.x)); })
   .style("fill-opacity",1);
 
 legend = svg.selectAll("rect");
@@ -258,8 +237,11 @@ var legend = svg.append("rect")
 });
 console.log("str 2",str);
 });//end on click
-	 
-    </script>
+    		</script>
+    	
+    	<p>Puedes ver todos lo meses codificados en <a href="http://pageonex.com/threads/search_by_category?q=colorcorrupci%C3%B3n">PageOneX > Colorcorrupci&oacute;n.</a></p>
+    	</div>
+    </div>
   </body>
 </html>
 
