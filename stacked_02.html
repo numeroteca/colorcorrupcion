@@ -6,7 +6,7 @@
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?1.29.1"></script>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.time.js?1.29.1"></script>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?1.29.1"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <style type="text/css">
 
     </style>
@@ -18,12 +18,12 @@
 parseDay = d3.time.format("%Y-%m-%d").parse;
 parse = d3.time.format("%m-%Y").parse;	
 
-d3.json("total20132014.json", function(megajason) { //2013total.json
+d3.json("data/total20132014.json", function(megajason) { //2013total.json
 
 console.log(megajason);//TODO reorder by date
 
 var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
-var media = "La Vanguardia";
+var media = "Ara";
 
 total = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
