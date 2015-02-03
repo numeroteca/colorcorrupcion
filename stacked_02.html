@@ -14,6 +14,8 @@
   <body>
     <script type="text/javascript">
 
+parse = d3.time.format("%m-%Y").parse;
+
 //d3.csv("crimea.csv", function(crimea) {
 d3.json("total20132014.json", function(megajason) { //2013total.json
 
@@ -27,7 +29,6 @@ for ( var i = 0; i < parties.length; i++ ) {
 
 for (var key in megajason) { //itera por la unica matriz que hay: data
 	var test = (megajason[key]);
-	//console.log(test);
 	for (var key in test) { //itera por los dias
 		//console.log(key); //el dia
 		//console.log(test[key]["Total"]);
@@ -146,12 +147,13 @@ console.log("stats:", stats);
 
 var perYear = [];
 for ( var i = 0; i < parties.length; i++ ) {
-	perYear.push([[],[]]);
+	perYear.push([]);
 }
+console.log("perYear",perYear);
 
 for (var i = 0; i < stats.length; i++) {
 	for (var j = 0; j < years.length; j++) {
-		perYear[i][j] = stats[i][j][1]['avgYear'];
+		perYear[i].push({"y":stats[i][j][1]['avgYear']});
 	}
 }
 console.log("perYear",perYear);
@@ -176,19 +178,20 @@ for ( var i = 0; i < parties.length; i++ ) {
 }
 
 for (var key = 0; key < stats.length; key++) {
-	for (var i = 0; i < 12; i++) {
-		perMonthFinal[key].push({"y":perMonth[key][0][0][i]});
-		//perMonthFinal.push(perMonth[key][0][0]);
-		perMonthFinal[key] = perMonthFinal[key].concat({"y":perMonth[key][1][0][i]});
+	for (var i = 0; i < 12; i++) { //iterate through first year
+		perMonthFinal[key].push({"y":perMonth[key][0][0][i],"x":parse(i+1+"-"+years[0]),"month":i+1,"year":years[0],"party":parties[key]});
+	}
+	for (var i = 0; i < 12; i++) { //iterate through first year
+		perMonthFinal[key] = perMonthFinal[key].concat({"y":perMonth[key][1][0][i],"x":parse(i+1+"-"+years[1]),"month":i+1,"year":years[1],"party":parties[key]});
 	}
 }
 console.log("perMonthFinal",perMonthFinal);
 
 //Convert an object to file
-/*var printThis = JSON.stringify(perMonthFinal); //convert object to string
+var printThis = JSON.stringify(perMonthFinal); //convert object to string
 var url = 'data:text/json;charset=utf8,' + encodeURIComponent(printThis); //saves file
 window.open(url, '_blank');
-window.focus();*/
+window.focus();
 });
     </script>
   </body>
