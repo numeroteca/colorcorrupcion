@@ -48,9 +48,13 @@ var svg = d3.select("body").append("svg:svg")
 var stack = d3.layout.stack();
 
 //d3.csv("crimea.csv", function(crimea) {
-d3.json("perMonth.json", function(total) { //Reads json file
+d3.json("perMonthLaVanguardia.json", function(total) { //Reads json file
 
 console.log(total);
+console.log("total['data']",total);
+media = total['media'];
+console.log("media",media);
+total = total['data'];
 for ( var i = 0; i < total.length; i++ ){
 	total[i].sort(function(a,b){
 		// Turn your strings into dates, and then subtract them

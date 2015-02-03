@@ -18,28 +18,27 @@
 parseDay = d3.time.format("%Y-%m-%d").parse;
 parse = d3.time.format("%m-%Y").parse;	
 
-//d3.csv("crimea.csv", function(crimea) {
 d3.json("total20132014.json", function(megajason) { //2013total.json
 
 console.log(megajason);//TODO reorder by date
 
 var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
-total = [];
+var media = "La Vanguardia";
+
+total = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
-	total.push([]);
+	total['data'].push([]);
 }
+total["media"] = media;
+console.log("total",total);
+
 
 for (var key in megajason) { //itera por la unica matriz que hay: data
 	var test = (megajason[key]);
 	for (var key in test) { //itera por los dias
-		//console.log(key); //el dia
-		//console.log(test[key]["Total"]);
 		theDay = key;
-		var totalday = test[key]["Total"]; //el objeto "Total" de cada dia. Si se cambia Total por nombre de periodico //TODO itinerate through media
-		//console.log(totalday);
-		//var total[key] = test[key]["Total"];
+		var totalday = test[key][media]; //el objeto "Total" de cada dia. Si se cambia Total por nombre de periodico //TODO itinerate through media
 		for (var key in totalday) { //TODO flter by period
-			//console.log(key,totalday[key]);
 			//TODO convert in array of parties and iterate with foreach and i
 			var coverage = totalday[key];
 			for ( var i = 0; i < parties.length; i++ ) {
@@ -56,60 +55,50 @@ for (var key in megajason) { //itera por la unica matriz que hay: data
 					newElement.year = date.getFullYear();
 					newElement.y = coverage;
 					newElement.x = parseDay(theDay);
-					total[i].push(newElement);
-
+					total['data'][i].push(newElement);
 				}
 			}
-			/*if (key == 'PP') {
-				//console.log(theDay, 'PP',totalday[key]);
-				//total[1][i] = totalday[key];
-				var newElement = {};
-				newElement.y = totalday[key];
-				newElement.date = theDay;
-				newElement.party = 'PP';
-				total[0].push(newElement);
-			}*/
 		}
 	}
 }
 
-console.log(total);
 for ( var i = 0; i < total.length; i++ ){
-	total[i].sort(function(a,b){
+	total['data'][i].sort(function(a,b){
 		// Turn your strings into dates, and then subtract them
 		// to get a value that is either negative, positive, or zero.
 		return new Date(a.date) - new Date(b.date);
 	});
 }
-console.log("total[0]",total[0]);
+console.log("total['data'][0]",total['data'][0]);
 
 var years = ['2013','2014'];
 var sumMonth = [[],[],[],[],[],[],[],[],[],[],[],[]];
 var sumYear = [0,0];
 var countDays = [0,0];
 
-var stats = [];
+var stats = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
-	stats.push([[],[]]);
+	stats["data"].push([[],[]]);
 }
+stats["media"] = media;
 
 for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
-	stats[a].push({"party":parties[a]});
+	stats["data"][a].push({"party":parties[a]});
 	for ( var b = 0; b < years.length; b++ ) {//iterate through years
-		stats[a][b].push({"year":years[b]});
+		stats["data"][a][b].push({"year":years[b]});
 		var newElement = {}; //creates an element per party
 		sumYear[b] = 0;
 		countDays[b] = 0;
 		newElement.year = years[b];
 		sumMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
-		for ( var i = 0; i < total[0].length; i++ ) { //iterate through all the days i
-			if ( total[a][i]['year'] == years[b] ) {//values for year 2014 TODO iterate through years and store the value
+		for ( var i = 0; i < total['data'][0].length; i++ ) { //iterate through all the days i
+			if ( total['data'][a][i]['year'] == years[b] ) {//values for year 2014 TODO iterate through years and store the value
 				//sum2014 += total[a][i]['y']; //total[0] is PP
 				//i2014++; //counts days in 2014
-				sumYear[b] += total[a][i]['y'];
+				sumYear[b] += total['data'][a][i]['y'];
 				countDays[b]++;
-				m = parseFloat(total[a][i]['month']);
-				sumMonth[m] += total[a][i]['y'];
+				m = parseFloat(total['data'][a][i]['month']);
+				sumMonth[m] += total['data'][a][i]['y'];
 			}
 				//console.log(countDays[b]);
 				//sum2013 += total[a][i]['y'];
@@ -139,60 +128,59 @@ for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 		newElement.daysPerYear = countDays[b];
 		newElement.avgYear = sumYear[b]/countDays[b];
 		newElement.party = parties[a];
-		//newElement.sum11 = sum11;
-		//newElement.sum201411 = sum201411;
-		//newElement.year = date.getFullYear();
-		stats[a][b].push(newElement); //pushes and elenmen per party
+		stats["data"][a][b].push(newElement); //pushes and elenmen per party
 	}
 	
 }
 
 console.log("stats:", stats);
 
-var perYear = [];
+var perYear = {'data':[]};
 for ( var i = 0; i < parties.length; i++ ) {
-	perYear.push([]);
+	perYear['data'].push([]);
 }
-console.log("perYear",perYear);
+perYear["media"] = media;
 
-for (var i = 0; i < stats.length; i++) {
+for (var i = 0; i < stats["data"].length; i++) {
 	for (var j = 0; j < years.length; j++) {
-		perYear[i].push({"y":stats[i][j][1]['avgYear']});
+		perYear['data'][i].push({"y":stats["data"][i][j][1]['avgYear']});
 	}
 }
 console.log("perYear",perYear);
 
-var perMonth = [];
+var perMonth = {'data':[]};
 for ( var i = 0; i < parties.length; i++ ) {
-	perMonth.push([]);
+	perMonth['data'].push([]);
 }
-for (var i = 0; i < stats.length; i++) { //per party
+perMonth["media"] = media;
+
+for (var i = 0; i < stats["data"].length; i++) { //per party
 	for (var j = 0; j < years.length; j++) { //per year
 		var everyMonth = [];
-		everyMonth.push(stats[i][j][1]['sumMonth']); //value of one party in one month
-		//console.log(stats[i][j][1]['sumMonth']);
-		perMonth[i].push(everyMonth);
+		everyMonth.push(stats["data"][i][j][1]['sumMonth']); //value of one party in one month
+		perMonth['data'][i].push(everyMonth);
 	}
 }
 console.log("perMonth",perMonth);
 
-perMonthFinal = [];
+perMonthFinal = {'data':[]};
 for ( var i = 0; i < parties.length; i++ ) {
-	perMonthFinal.push([]);
+	perMonthFinal['data'].push([]);
 }
+perMonthFinal["media"] = media;
 
-for (var key = 0; key < stats.length; key++) {
+for (var key = 0; key < stats["data"].length; key++) {
 	for (var i = 0; i < 12; i++) { //iterate through first year
-		perMonthFinal[key].push({"y":perMonth[key][0][0][i],"x":parse(i+1+"-"+years[0]),"month":i+1,"year":years[0],"party":parties[key]});
+		perMonthFinal['data'][key].push({"y":perMonth['data'][key][0][0][i],"x":parse(i+1+"-"+years[0]),"month":i+1,"year":years[0],"party":parties[key]});
 	}
 	for (var i = 0; i < 12; i++) { //iterate through first year
-		perMonthFinal[key] = perMonthFinal[key].concat({"y":perMonth[key][1][0][i],"x":parse(i+1+"-"+years[1]),"month":i+1,"year":years[1],"party":parties[key]});
+		perMonthFinal['data'][key] = perMonthFinal['data'][key].concat({"y":perMonth['data'][key][1][0][i],"x":parse(i+1+"-"+years[1]),"month":i+1,"year":years[1],"party":parties[key]});
 	}
 }
 console.log("perMonthFinal",perMonthFinal);
 
 //Convert an object to file
-var printThis = JSON.stringify(total); //convert object to string
+var printThis = JSON.stringify(perMonthFinal); //convert object to string
 var url = 'data:text/json;charset=utf8,' + encodeURIComponent(printThis); //saves file
 window.open(url, '_blank');
 window.focus();
