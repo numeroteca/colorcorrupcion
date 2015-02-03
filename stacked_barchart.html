@@ -27,21 +27,35 @@
     </style>
   </head>
   <body>
-  	<h1>El Color de la Corrupci&oacute;n</h1>
+  	<h1>El Color de la Corrupci&oacute;n
+			<small>
+				<span class="label label-default" style="background-color:blue">PP</span> 
+				<span class="label label-default" style="background-color:red">PSOE</span> 
+				<span class="label label-default" style="background-color:orange">CiU</span> 
+				<span class="label label-default" style="background-color:darkgreen">Casa Real</span> 
+				<span class="label label-default" style="background-color:lime">Bankia</span> 
+				<span class="label label-default" style="background-color:#FBBBB9">UGT-A y CCOO</span> 
+				<span class="label label-default" style="background-color:grey">Otros</span> 
+			</small>
+  	</h1>
+  	<p>Cobertura de corrupci&oacute;n en portadas</p>
 		<div class="btn-group">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					 Selecciona peri&oacute;dico <span class="caret"></span>
  				</button>
 				<ul class="dropdown-menu" role="menu">
 					<li><a class="m" value="Total" href="#">Media de todos los peri&oacute;dicos</a></li>
+ 					<li><a class="m" value="El Pais" href="#">El Pa&iacute;s</a></li>
  					<li><a class="m" value="El Mundo" href="#">El Mundo</a></li>
   				<li><a class="m" value="ABC" href="#">ABC</a></li>
-  				<li><a class="m" value="La Vanguardia" href="#">La Vanguardia</a></li>
-  				<li><a class="m" value="El Pais" href="#">El Pais</a></li>
+  				<li><a class="m" value="La Razon" href="#">La Raz&oacute;n</a></li>
   				<li><a class="m" value="La Gaceta" href="#">La Gaceta</a></li>
+  				<li><a class="m" value="La Vanguardia" href="#">La Vanguardia</a></li>
+  				<li><a class="m" value="El Periodico" href="#">El Peri&oacute;dico</a></li>
+  				<li><a class="m" value="Ara" href="#">Ara</a></li>
 			</ul>
 		</div>
-
+					
     <script type="text/javascript">
 //On click, update with new data
 
@@ -51,7 +65,10 @@ var w = 1500,
     p = [20, 50, 30, 20],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
-    color = d3.scale.ordinal().range(["blue", "red", "orange","darkgreen","lime","#FBBBB9","grey"]),
+    colors = ["blue", "red", "orange","darkgreen","lime","#FBBBB9","grey"],
+    color = d3.scale.ordinal().range(colors),
+    parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
+    //parties = {'PP':"blue",'PSOE':"red",'CiU':"orange",'Casa Real':"darkgreen",'Bankia':"lime",'UGT-A y CCOO':"#FBBBB9",'Otros':"grey};
     //parse = d3.time.format("%m-%Y").parse,
     format = d3.time.format("%b");
     //parse = d3.time.format("%Y-%m-%d").parse
@@ -81,12 +98,18 @@ d3.selectAll(".m").on("click", function() {
 		str = "data/perMonthElPais.json";
 	}else if(date == "El Mundo"){
 		str = "data/perMonthElMundo.json";
-	}else if(date == "La Vanguardia"){
-		str = "data/perMonthLaVanguardia.json";
 	}else if(date == "ABC"){
 		str = "data/perMonthABC.json";
+	}else if(date == "La Razon"){
+		str = "data/perMonthLaRazon.json";
 	}else if(date == "La Gaceta"){
 		str = "data/perMonthLaGaceta.json";
+	}else if(date == "La Vanguardia"){
+		str = "data/perMonthLaVanguardia.json";
+	}else if(date == "El Periodico"){
+		str = "data/perMonthElPeriodico.json";
+	}else if(date == "Ara"){
+		str = "data/perMonthAra.json";
 	}else if(date == "Total"){
 		str = "data/perMonthTotal.json";
 	}else{
@@ -100,8 +123,10 @@ d3.json(str, function(total) { //Reads json file 'data/perMonthElMundo.json'
 
 console.log(total);
 console.log("total['data']",total);
+
 media = total['media'];
 console.log("media",media);
+
 total = total['data'];
 for ( var i = 0; i < total.length; i++ ){
 	total[i].sort(function(a,b){
@@ -110,23 +135,51 @@ for ( var i = 0; i < total.length; i++ ){
 		return new Date(a.date) - new Date(b.date);
 	});
 }
-//	console.log("total[0]",total[0]);
-
+console.log("total prev",total);
 
 //For json
 dataset = total;
 stack(dataset);
-//console.log(dataset);
+console.log("stack(dataset) ",dataset);
 
 // Compute the x-domain (by date) and y-domain (by top).
-x.domain(	dataset[0].map(function(d) { return d.x; }) ); //coge la primera de las 3 array, podŕia ser 1 o 2 tambien
+x.domain(	dataset[0].map(function(d) { return d.x; }) ); //coge la primera de las n arrays, podŕia ser 1 o 2 tambien
 y.domain([
 	0, //valor minimo
-	14 //TODO calculate the max value of all the possible arrays to keep y scale constant
+	14 //TODO calculate the max value (y0) of all the possible arrays to keep y scale constant
 	/*d3.max(
 		dataset[dataset.length - 1], function(d) { return d.y0 + d.y; console.log(d.y0 + d.y);} //coge la array ultima que ya tienen todos los valors acumulados
 	) */ //valor maximo
 ]); //usa la ultima array, la que tiene los valores de las otras ya acumulados para calcular el maximos valos de y
+
+
+/*var xAxis = d3.svg.axis()
+				   .scale(x)
+				   .orient("bottom")
+				   .ticks(24)
+				   .tickFormat(d3.time.format("%b"));
+   
+d3.append("g")
+	.attr("class","x axis")
+	.attr("transform","translate(40," + (0) + ")")
+	.call(xAxis);*/
+var formato = d3.time.format("%m-%Y");
+
+svg.selectAll("text")
+   .data(dataset[0])
+   .enter()
+   .append("text")
+   .text(function(d) {
+        //return d.x;
+        return formato(new Date(d.x));
+        //return x(d) + x.rangeBand() / 2;
+        //return "xx";
+   })
+   .attr("x", function(d, i) {
+        //return i * (w / dataset[0].length);
+        return x(d.x);
+   })
+   .attr("y", 15);
 
 groups = svg.selectAll(".cause").data(dataset);
 groups.enter().append("g")
@@ -139,6 +192,8 @@ groups.selectAll("rect").data(function(d){return d;}).remove();
 
 rect = groups.selectAll("rect").data(function(d){return d;});
 
+
+
 rect.enter()
   .append("rect")
   //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
@@ -146,10 +201,19 @@ rect.enter()
   .attr("y", function(d) { return -y(d.y0) - y(d.y); })
   .attr("width",(w - p[1] - p[3])/(dataset[0].length*1.15))
   .attr("height", function(d) { return y(d.y); })
-  .attr("title",function(d) { return d.party + " " + d.y.toPrecision(3) + "\n(" + d.date + ")"; })
+  .attr("title",function(d) { return d.party + ": " + d.y.toPrecision(3) + "\nMes: " + formato(new Date(d.x)); })
   .style("fill-opacity",1);
-  
- 
+
+legend = svg.selectAll("rect");
+
+var legend = svg.append("rect")
+  //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
+  .attr("x", function(d,i) { return i*10; })
+  .attr("y", function(d,i) { return h; })
+  .attr("width",20)
+  .attr("height",20)
+  .attr("fill","#f00")
+  .style("fill-opacity",1);
 
   // Add a label per date.
   var label = svg.selectAll("text")
@@ -162,7 +226,7 @@ rect.enter()
       .attr("dy", ".71em")
       //.text(function(d) { return month(d); });
       //.text(format());
-      .text("1");
+      .text("-");
 
   // Add y-axis rules.
   var rule = svg.selectAll("g.rule")
@@ -184,12 +248,12 @@ rect.enter()
 	d3.select(".medianame").remove();
   
   var mediaName = svg.append("svg:text")
-    .attr("x", w  - p[1] - p[3] - 100)
+    .attr("x", 0)
     .attr("y", -h + p[0] + 30)
     .attr("dy", "1em")
     .attr("class", "medianame")
     .attr("text-anchor", "right")
-    .style("font-size","14px")
+    .style("font-size","16px")
     .text(media);
 });
 console.log("str 2",str);
