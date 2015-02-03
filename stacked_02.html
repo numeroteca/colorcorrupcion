@@ -14,7 +14,9 @@
   <body>
     <script type="text/javascript">
 
-parse = d3.time.format("%m-%Y").parse;
+
+parseDay = d3.time.format("%Y-%m-%d").parse;
+parse = d3.time.format("%m-%Y").parse;	
 
 //d3.csv("crimea.csv", function(crimea) {
 d3.json("total20132014.json", function(megajason) { //2013total.json
@@ -48,12 +50,14 @@ for (var key in megajason) { //itera por la unica matriz que hay: data
 					//var dd = new Date();
 					//console.log(dd);
 					var newElement = {};
-					newElement.y = coverage;
 					newElement.date = theDay;
 					newElement.party = parties[i];
 					newElement.month = date.getMonth();
 					newElement.year = date.getFullYear();
+					newElement.y = coverage;
+					newElement.x = parseDay(theDay);
 					total[i].push(newElement);
+
 				}
 			}
 			/*if (key == 'PP') {
@@ -188,7 +192,7 @@ for (var key = 0; key < stats.length; key++) {
 console.log("perMonthFinal",perMonthFinal);
 
 //Convert an object to file
-var printThis = JSON.stringify(perMonthFinal); //convert object to string
+var printThis = JSON.stringify(total); //convert object to string
 var url = 'data:text/json;charset=utf8,' + encodeURIComponent(printThis); //saves file
 window.open(url, '_blank');
 window.focus();
