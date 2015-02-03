@@ -48,7 +48,7 @@ var svg = d3.select("body").append("svg:svg")
 var stack = d3.layout.stack();
 
 //d3.csv("crimea.csv", function(crimea) {
-d3.json("perMonthLaVanguardia.json", function(total) { //Reads json file
+d3.json("data/perMonthLaVanguardia.json", function(total) { //Reads json file
 
 console.log(total);
 console.log("total['data']",total);
@@ -126,13 +126,15 @@ rect.enter()
       .attr("x", w - p[1] - p[3] + 6)
       .attr("dy", ".35em")
       .text(d3.format(",d"));
-      
-      
+  
+  svg.append("svg:text")
+    .attr("x", w  - p[1] - p[3] - 100)
+    .attr("y", -h + p[0] + 30)
+    .attr("dy", "1em")
+    .attr("text-anchor", "right")
+    .style("font-size","14px")
+    .text(media);
 });
-
-
-
-
     </script>
   </body>
 </html>
