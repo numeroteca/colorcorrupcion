@@ -2,13 +2,10 @@
 <html>
   <head>
 		<title>PageOneX Color Corrupci&oacute;n</title>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?1.29.1"></script>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.time.js?1.29.1"></script>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?1.29.1"></script>
+		<script type="text/javascript" src="js/d3.v2.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<style type="text/css">
 
 		svg {
@@ -29,19 +26,20 @@
   	<div class="row">
   		<div class="col-md-12">
 				<h1>El Color de la Corrupci&oacute;n
-					<small>
-						<span class="label label-default" style="background-color:blue">PP</span> 
-						<span class="label label-default" style="background-color:red">PSOE</span> 
-						<span class="label label-default" style="background-color:orange">CiU</span> 
-						<span class="label label-default" style="background-color:darkgreen">Casa Real</span> 
-						<span class="label label-default" style="background-color:lime">Bankia</span> 
-						<span class="label label-default" style="background-color:#FBBBB9">UGT-A y CCOO</span> 
-						<span class="label label-default" style="background-color:grey">Otros</span> 
-					</small>
 				</h1>
 				<p>Cobertura de corrupci&oacute;n en portadas de prensa.</p>
+				<h5>Leyenda: 
+					<span class="label" style="background-color:blue">PP</span> 
+					<span class="label" style="background-color:red">PSOE</span> 
+					<span class="label" style="background-color:orange">CiU</span> 
+					<span class="label" style="background-color:darkgreen">Casa Real</span> 
+					<span class="label" style="background-color:lime">Bankia</span> 
+					<span class="label" style="background-color:#FBBBB9">UGT-A y CCOO</span> 
+					<span class="label" style="background-color:grey">Otros</span> L&iacute;nea: Corrupci&oacute;n y fraude como problema (Bar&oacute;metro CIS)
+				</h5>
 				<ul class="nav nav-pills" role="menu">
-					<li><a class="m" value="Total" href="#">Media de todos los peri&oacute;dicos</a></li>
+					<li class="disabled"><a href="#">Selecciona un peri&oacute;dico</a></li>
+					<li><a class="m" value="Total mes" href="#">Media de todos los peri&oacute;dicos</a></li>
 					<li><a class="m" value="El Pais" href="#">El Pa&iacute;s</a></li>
 					<li><a class="m" value="El Mundo" href="#">El Mundo</a></li>
 					<li><a class="m" value="ABC" href="#">ABC</a></li>
@@ -50,6 +48,7 @@
 					<li><a class="m" value="La Vanguardia" href="#">La Vanguardia</a></li>
 					<li><a class="m" value="El Periodico" href="#">El Peri&oacute;dico</a></li>
 					<li><a class="m" value="Ara" href="#">Ara</a></li>
+					<!--<li><a class="m" value="Total dia" href="#">Por d&iacute;a todos</a></li>-->
 				</ul>
 				<div id="datavis"></div>
     		<script type="text/javascript">
@@ -58,7 +57,7 @@
 //initially based on http://bl.ocks.org/mbostock/1134768 and http://bl.ocks.org/anupsavvy/9513382
 var w = 1500,
     h = 400,
-    p = [20, 100, 30, 20],
+    p = [20, 170, 30, 20],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
     colors = ["blue", "red", "orange","darkgreen","lime","#FBBBB9","grey"],
@@ -69,6 +68,7 @@ var w = 1500,
     format = d3.time.format("%b");
     var formato = d3.time.format("%m-%Y");
     //parse = d3.time.format("%Y-%m-%d").parse
+    var yCIS = d3.scale.linear().range([0, h - p[0] - p[2]]);
 
 var svg = d3.select("#datavis").append("svg:svg")
     .attr("width", w)
@@ -107,8 +107,10 @@ d3.selectAll(".m").on("click", function() {
 		str = "data/perMonthElPeriodico.json";
 	}else if(date == "Ara"){
 		str = "data/perMonthAra.json";
-	}else if(date == "Total"){
+	}else if(date == "Total mes"){
 		str = "data/perMonthTotal.json";
+	//}else if(date == "Total dia"){
+	//	str = "data/perDayTotal.json";
 	}else{
 		str = "data/perMonthLaVanguardia.json";
 	}
@@ -149,6 +151,7 @@ y.domain([
 	) */ //valor maximo
 ]); //usa la ultima array, la que tiene los valores de las otras ya acumulados para calcular el maximos valos de y
 
+//LAbel in x axis
 svg.selectAll("text")
    .data(dataset[0])
    .enter()
@@ -224,8 +227,21 @@ var legend = svg.append("rect")
       .attr("dy", ".35em")
       .text(d3.format(",d"));
   
-	d3.select(".medianame").remove();
+  d3.select(".explain").remove();
+      
+  var explain = svg.append("svg:g").attr("class","explain");
   
+  explain.append("svg:text")
+      .attr("x", w - p[2] -120)
+      .attr("y", -h + p[0] + 30)
+      .text("Numero de portadas/mes");
+  explain.append("svg:text")
+      .attr("x", w - p[2] -120)
+      .attr("y", -h + p[0] +50 )
+      .text("1 = 1 portada");
+  
+	d3.select(".medianame").remove();
+	
   var mediaName = svg.append("svg:text")
     .attr("x", 0)
     .attr("y", -h + p[0] + 30)
@@ -234,8 +250,55 @@ var legend = svg.append("rect")
     .attr("text-anchor", "right")
     .style("font-size","16px")
     .text(media);
+    
+    
+yCIS.domain([0,70]);
+var datosCIS = [
+	{x:"2013-01-01",y:17.7},
+	{x:"2013-02-01",y:40.0},
+	{x:"2013-03-01",y:44.5},
+	{x:"2013-04-01",y:39.3},
+	{x:"2013-05-01",y:30.7},
+	{x:"2013-06-01",y:32.5},
+	{x:"2013-07-01",y:37.4},
+	{x:"2013-08-01",y:37.2},//invented value
+	{x:"2013-09-01",y:37.1},
+	{x:"2013-10-01",y:31.3},
+	{x:"2013-11-01",y:31.8},
+	{x:"2013-12-01",y:37.6},
+	{x:"2014-01-01",y:39.5},
+	{x:"2014-02-01",y:44.2},
+	{x:"2014-03-01",y:41.0},
+	{x:"2014-04-01",y:36.3},
+	{x:"2014-05-01",y:35.7},
+	{x:"2014-06-01",y:38.8},
+	{x:"2014-07-01",y:41.5},
+	{x:"2014-08-01",y:41.9},//invented value
+	{x:"2014-09-01",y:42.7},
+	{x:"2014-10-01",y:42.3},
+	{x:"2014-11-01",y:63.8},
+	{x:"2014-12-01",y:60.0},
+]
+console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
+console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));
+console.log("ddd",w/(dataset[0].length));
+var barWidth = (w - p[1] - p[3])/(dataset[0].length);
+
+var lineFunc = d3.svg.line()
+  .x(function(d,i) { return (i+1)*barWidth-barWidth/2; })
+  .y(function(d) {
+    return -yCIS(d.y);
+  })
+  .interpolate('linear');
+
+svg.append('svg:path')
+  .attr('d', lineFunc(datosCIS))
+  .attr('stroke', 'black')
+  .attr('stroke-width', 4)
+  .attr('fill', 'none');
+
 });
-console.log("str 2",str);
+
 });//end on click
     		</script>
     	
