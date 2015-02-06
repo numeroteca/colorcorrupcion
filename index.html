@@ -19,6 +19,14 @@
 			cursor:pointer;
 			opacity: 0.4;
 		}
+		.rule line:hover {
+			stroke:#000 !important;
+			cursor:pointer;
+		}
+		.cis-line:hover {
+			stroke:#999;
+			cursor:pointer;
+		}
 
     </style>
   </head>
@@ -60,9 +68,9 @@ var w = 1500,
     p = [20, 170, 30, 20],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
-    colors = ["blue", "red", "orange","darkgreen","lime","#FBBBB9","grey"],
+    colors = ["blue","red", "orange","darkgreen","lime","#FBBBB9","grey"],
     color = d3.scale.ordinal().range(colors),
-    parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
+    //parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
     //parties = {'PP':"blue",'PSOE':"red",'CiU':"orange",'Casa Real':"darkgreen",'Bankia':"lime",'UGT-A y CCOO':"#FBBBB9",'Otros':"grey};
     //parse = d3.time.format("%m-%Y").parse,
     format = d3.time.format("%b");
@@ -218,10 +226,11 @@ var legend = svg.append("rect")
   rule.append("svg:line")
       .attr("x2", w - p[1] - p[3])
       .style("stroke", function(d) { return d ? "#fff" : "#000"; })
+      .style("stroke-width", 1)
       .style("stroke-opacity", function(d) { return d ? .7 : null; });
 
   rule.append("svg:text")
-      .attr("x", w - p[1] - p[3] + 6)
+      .attr("x", -15)
       .attr("dy", ".35em")
       .text(d3.format(",d"));
   
@@ -236,20 +245,24 @@ var legend = svg.append("rect")
   explain.append("svg:text")
       .attr("x", w - p[2] -120)
       .attr("y", -h + p[0] +50 )
-      .text("1 = 1 portada");
+      .text("1 = superficie 1 portada");
+  explain.append("svg:text")
+      .attr("x", w - p[2] -120)
+      .attr("y", -h + p[0] + 70 )
+      .text("% respuestas CIS");
   
 	d3.select(".medianame").remove();
 	
   var mediaName = svg.append("svg:text")
-    .attr("x", 0)
-    .attr("y", -h + p[0] + 30)
+    .attr("x", 50)
+    .attr("y", -h + p[0] + 15)
     .attr("dy", "1em")
     .attr("class", "medianame")
     .attr("text-anchor", "right")
     .style("font-size","16px")
     .text(media);
     
-    
+//Data from CIS on corruption perception
 yCIS.domain([0,70]);
 var datosCIS = [
 	{x:"2013-01-01",y:17.7},
@@ -291,9 +304,23 @@ var lineFunc = d3.svg.line()
 
 svg.append('svg:path')
   .attr('d', lineFunc(datosCIS))
-  .attr('stroke', 'black')
+  .attr('stroke', '#AAAAAA')
+  .attr('class', 'cis-line')
+  .attr('title', 'Corrupcion y fraude como problema (Barometro CIS)')
   .attr('stroke-width', 4)
   .attr('fill', 'none');
+
+  // Add y-axis for CIS rules.
+  var ruleccis = svg.selectAll("g.rulecis")
+      .data(yCIS.ticks(4))
+    .enter().append("svg:g")
+      .attr("class", "rulecis")
+      .attr("transform", function(d) { return "translate(0," + -yCIS(d) + ")"; });
+
+  ruleccis.append("svg:text")
+      .attr("x", w - p[1] - p[3])
+      .attr("dy", ".35em")
+      .text(d3.format());
 
 });
 
