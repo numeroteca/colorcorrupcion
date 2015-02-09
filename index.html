@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-		<title>PageOneX Color Corrupci&oacute;n</title>
+		<title>Color Corrupci&oacute;n</title>
 		<script type="text/javascript" src="js/d3.v2.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -9,7 +9,7 @@
 		<style type="text/css">
 
 		svg {
-			width: 1500px;
+			width: 1300px;
 			height: 400px;
 			border: solid 1px #ccc;
 			font: 10px sans-serif;
@@ -36,13 +36,16 @@
 				<h1>El Color de la Corrupci&oacute;n
 				</h1>
 				<p>Cobertura de corrupci&oacute;n en portadas de prensa.</p>
+				<h2>Superficie dedicada en portada a casos de corrupci&oacute;n</h2>
+				<p>Clasificaci&oacute;n por partido pol&iacute;tico o instituci&oacute;n. Datos mensuales.</p>
 				<h5>Leyenda: 
 					<span class="label" style="background-color:blue">PP</span> 
 					<span class="label" style="background-color:red">PSOE</span> 
 					<span class="label" style="background-color:orange">CiU</span> 
 					<span class="label" style="background-color:darkgreen">Casa Real</span> 
 					<span class="label" style="background-color:lime">Bankia</span> 
-					<span class="label" style="background-color:#FBBBB9">UGT-A y CCOO</span> 
+					<span class="label" style="background-color:#FBBBB9">UGT-A y CCOO</span>
+					<span class="label" style="background-color:#9e398b">Podemos</span>
 					<span class="label" style="background-color:grey">Otros</span> L&iacute;nea: Corrupci&oacute;n y fraude como problema (Bar&oacute;metro CIS)
 				</h5>
 				<ul class="nav nav-pills" role="menu">
@@ -63,12 +66,12 @@
 //On click, update with new data
 
 //initially based on http://bl.ocks.org/mbostock/1134768 and http://bl.ocks.org/anupsavvy/9513382
-var w = 1500,
+var w = 1300,
     h = 400,
     p = [20, 170, 30, 20],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
-    colors = ["blue","red", "orange","darkgreen","lime","#FBBBB9","grey"],
+    colors = ["blue","red", "orange","darkgreen","lime","#FBBBB9","grey","grey","#9e398b"],
     color = d3.scale.ordinal().range(colors),
     //parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
     //parties = {'PP':"blue",'PSOE':"red",'CiU':"orange",'Casa Real':"darkgreen",'Bankia':"lime",'UGT-A y CCOO':"#FBBBB9",'Otros':"grey};
@@ -87,18 +90,18 @@ var svg = d3.select("#datavis").append("svg:svg")
 //Set up stack method
 var stack = d3.layout.stack();
 
-console.log("aaa");
+//console.log("aaa");
 
-var str = "data/perMonthElMundo.json";	
-console.log("str",str);
+//var str = "data/perMonthElMundo.json";	
+//console.log("str",str);
 
 //On click, update with new data
 d3.selectAll(".m").on("click", function() {
 	var date = this.getAttribute("value");
 	//console.log("this",this.getAttribute("value"));
-	console.log("date",date);
+	//console.log("date",date);
 	var str = "data/perMonthElMundo.json";
-	console.log("str 0",str);
+	//console.log("str 0",str);
 	if(date == "El Pais"){
 		str = "data/perMonthElPais.json";
 	}else if(date == "El Mundo"){
@@ -122,7 +125,7 @@ d3.selectAll(".m").on("click", function() {
 	}else{
 		str = "data/perMonthLaVanguardia.json";
 	}
-	console.log("str 1",str);
+	//console.log("str 1",str);
 
 
 //d3.csv("crimea.csv", function(crimea) {
@@ -157,7 +160,7 @@ y.domain([
 	) */ //valor maximo
 ]); //usa la ultima array, la que tiene los valores de las otras ya acumulados para calcular el maximos valos de y
 
-//LAbel in x axis
+//Labels in x axis
 svg.selectAll("text")
    .data(dataset[0])
    .enter()
@@ -202,19 +205,6 @@ var legend = svg.append("rect")
   .attr("height",20)
   .attr("fill","#f00")
   .style("fill-opacity",1);
-
-  // Add a label per date.
-  var label = svg.selectAll("text")
-      .data(x.domain())
-    .enter().append("svg:text")
-      .attr("x", function(d) { return x(d) + x.rangeBand() / 2; })
-      //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
-      .attr("y", 6)
-      .attr("text-anchor", "middle")
-      .attr("dy", ".71em")
-      //.text(function(d) { return month(d); });
-      //.text(format());
-      .text("-");
 
   // Add y-axis rules.
   var rule = svg.selectAll("g.rule")
@@ -318,7 +308,7 @@ svg.append('svg:path')
       .attr("transform", function(d) { return "translate(0," + -yCIS(d) + ")"; });
 
   ruleccis.append("svg:text")
-      .attr("x", w - p[1] - p[3])
+      .attr("x", w - p[1] - p[3] + 5)
       .attr("dy", ".35em")
       .text(d3.format());
 
@@ -328,6 +318,8 @@ svg.append('svg:path')
     		</script>
     	
     	<p>Puedes ver todos lo meses codificados en <a href="http://pageonex.com/threads/search_by_category?q=colorcorrupci%C3%B3n">PageOneX > Colorcorrupci&oacute;n.</a></p>
+    	<p>Datos <a href="http://www.cis.es/opencms/-Archivos/Indicadores/documentos_html/TresProblemas.html">Bar&oacute;metro CIS</a>.</p>
+    	<p>Visualizaci&oacute;n de datos realizada por Pablo Rey Maz&oacute;n.</p>
     	</div>
     </div>
   </body>

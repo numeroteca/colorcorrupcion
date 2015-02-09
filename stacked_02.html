@@ -18,12 +18,12 @@
 parseDay = d3.time.format("%Y-%m-%d").parse;
 parse = d3.time.format("%m-%Y").parse;	
 
-d3.json("data/total20132014.json", function(megajason) { //2013total.json
+d3.json("data/total20132014final.json", function(megajason) { //2013total.json
 
 console.log(megajason);//TODO reorder by date
 
-var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros'];
-var media = "Ara";
+var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros','Tribunal Constitucional','Podemos'];//parties to study
+var media = "La Gaceta";
 
 total = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
@@ -82,6 +82,7 @@ for ( var i = 0; i < parties.length; i++ ) {
 }
 stats["media"] = media;
 
+//Creates object that contains acumulated data per month and party
 for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 	stats["data"][a].push({"party":parties[a]});
 	for ( var b = 0; b < years.length; b++ ) {//iterate through years
@@ -92,13 +93,18 @@ for ( var a = 0; a < parties.length; a++ ) { //iterate through all the parties
 		newElement.year = years[b];
 		sumMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
 		for ( var i = 0; i < total['data'][0].length; i++ ) { //iterate through all the days i
-			if ( total['data'][a][i]['year'] == years[b] ) {//values for year 2014 TODO iterate through years and store the value
-				//sum2014 += total[a][i]['y']; //total[0] is PP
-				//i2014++; //counts days in 2014
-				sumYear[b] += total['data'][a][i]['y'];
+			if (typeof total['data'][a][i] != 'undefined') { //checks if the party coded is defined for that day
+				if ( total['data'][a][i]['year'] == years[b] ) {//values for year 2014 TODO iterate through years and store the value
+					//sum2014 += total[a][i]['y']; //total[0] is PP
+					//i2014++; //counts days in 2014
+					sumYear[b] += total['data'][a][i]['y'];
+					countDays[b]++;
+					m = parseFloat(total['data'][a][i]['month']);
+					sumMonth[m] += total['data'][a][i]['y'];
+				}
+			} else {
 				countDays[b]++;
-				m = parseFloat(total['data'][a][i]['month']);
-				sumMonth[m] += total['data'][a][i]['y'];
+				//m = parseFloat(total['data'][a][i]['month']);
 			}
 				//console.log(countDays[b]);
 				//sum2013 += total[a][i]['y'];
