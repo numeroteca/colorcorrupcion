@@ -24,7 +24,7 @@
 			cursor:pointer;
 		}
 		.cis-line:hover {
-			stroke:#999;
+			stroke:#444;
 			cursor:pointer;
 		}
 
@@ -79,7 +79,8 @@ var w = 1300,
     format = d3.time.format("%b");
     var formato = d3.time.format("%m-%Y");
     //parse = d3.time.format("%Y-%m-%d").parse
-    var yCIS = d3.scale.linear().range([0, h - p[0] - p[2]]);
+    var yCIS = d3.scale.linear().range([0, h - p[0] - p[2]]); //scale for CIS data
+    var ySum = d3.scale.linear().range([0, h - p[0] - p[2]]); //scale for CIS data
 
 var svg = d3.select("#datavis").append("svg:svg")
     .attr("width", w)
@@ -133,6 +134,9 @@ d3.json(str, function(total) { //Reads json file 'data/perMonthElMundo.json'
 
 console.log(total);
 
+var sum = total['sum'];
+console.log(sum);
+
 media = total['media'];
 console.log("media",media);
 
@@ -166,7 +170,7 @@ svg.selectAll("text")
    .enter()
    .append("text")
    .text(function(d) {
-        return formato(new Date(d.x));
+        return String(formato(new Date(d.x)));
    })
    .attr("x", function(d, i) {
         //return i * (w / dataset[0].length);
@@ -174,15 +178,17 @@ svg.selectAll("text")
    })
    .attr("y", 15);
 
-groups = svg.selectAll(".cause").data(dataset);
-groups.enter().append("g")
-        .attr("class","cause")
+//Creates groups for codes. Every rectangle with a color (=code or party) is in a svg group
+groups = svg.selectAll(".party").data(dataset);
+groups.enter().append("g") //adds groups and asig color to every fill
+        .attr("class","party")
         .style("fill",function(d,i) {
             return color(i);
         });
-
+//Removes rectangles to insert them again (cleans previous drawn rectangles(
 groups.selectAll("rect").data(function(d){return d;}).remove();
 
+//Adds rectangles the stack bars
 rect = groups.selectAll("rect").data(function(d){return d;});
 
 rect.enter()
@@ -195,7 +201,8 @@ rect.enter()
   .attr("title",function(d) { return d.party + ": " + d.y.toPrecision(3) + " portadas en este mes\n" + formato(new Date(d.x)); })
   .style("fill-opacity",1);
 
-legend = svg.selectAll("rect");
+//Adds legend
+/*legend = svg.selectAll("rect");
 
 var legend = svg.append("rect")
   //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
@@ -205,26 +212,26 @@ var legend = svg.append("rect")
   .attr("height",20)
   .attr("fill","#f00")
   .style("fill-opacity",1);
+*/
+// Add y-axis rules.
+var rule = svg.selectAll("g.rule")
+    .data(y.ticks(5))
+  .enter().append("svg:g")
+    .attr("class", "rule")
+    .attr("transform", function(d) { return "translate(0," + -y(d) + ")"; });
 
-  // Add y-axis rules.
-  var rule = svg.selectAll("g.rule")
-      .data(y.ticks(5))
-    .enter().append("svg:g")
-      .attr("class", "rule")
-      .attr("transform", function(d) { return "translate(0," + -y(d) + ")"; });
+rule.append("svg:line")
+    .attr("x2", w - p[1] - p[3])
+    .style("stroke", function(d) { return d ? "#fff" : "#000"; })
+    .style("stroke-width", 1)
+    .style("stroke-opacity", function(d) { return d ? .7 : null; });
 
-  rule.append("svg:line")
-      .attr("x2", w - p[1] - p[3])
-      .style("stroke", function(d) { return d ? "#fff" : "#000"; })
-      .style("stroke-width", 1)
-      .style("stroke-opacity", function(d) { return d ? .7 : null; });
+rule.append("svg:text")
+    .attr("x", -15)
+    .attr("dy", ".35em")
+    .text(d3.format(",d"));
 
-  rule.append("svg:text")
-      .attr("x", -15)
-      .attr("dy", ".35em")
-      .text(d3.format(",d"));
-  
-  d3.select(".explain").remove();
+d3.select(".explain").remove();
       
   var explain = svg.append("svg:g").attr("class","explain");
   
@@ -251,7 +258,47 @@ var legend = svg.append("rect")
     .attr("text-anchor", "right")
     .style("font-size","16px")
     .text(media);
-    
+
+//Sum bar
+ySum.domain([0,135]);
+
+dataSum = sum;
+stack(dataSum);
+
+stack(dataSum);
+
+console.log("dataSumStack",dataSum);
+
+//Adds the sum stacked bar
+groupsSum = svg.selectAll(".sum").data(dataSum);
+groupsSum.enter().append("g") //adds groups and asig color to every fill
+        .attr("class","sum")
+        .style("fill",function(d,i) {
+            return color(i);
+        });
+
+//Removes rectangles to insert them again (cleans previous drawn rectangles(
+groupsSum.selectAll("rect").data(function(d){return d;}).remove();
+        
+//Adds rectangles the stack bars
+rectSum = groupsSum.selectAll("rect").data(function(d){return d;});
+
+rectSum.enter()
+  .append("rect")
+  //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
+  .attr("x", w - p[2] -120)
+  .attr("y", function(d) { return -ySum(d.y0) - ySum(d.y); })
+  .attr("width",60)
+  .attr("height", function(d) { return ySum(d.y); })
+  .attr("title",function(d) { return d.party + ": " + d.y.toPrecision(3) + " portadas en total"; })
+  .style("fill-opacity",1);
+
+svg.append("svg:text")
+  .attr("x", w - p[2] -100)
+  .attr("y", 15 )
+  .text("Total");
+
+
 //Data from CIS on corruption perception
 yCIS.domain([0,70]);
 var datosCIS = [
@@ -280,11 +327,12 @@ var datosCIS = [
 	{x:"2014-11-01",y:63.8},
 	{x:"2014-12-01",y:60.0},
 ]
-console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
-console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));
-console.log("ddd",w/(dataset[0].length));
-var barWidth = (w - p[1] - p[3])/(dataset[0].length);
+//console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
+//console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));
+//console.log("ddd",w/(dataset[0].length));
 
+//Adds CIS line
+var barWidth = (w - p[1] - p[3])/(dataset[0].length);
 var lineFunc = d3.svg.line()
   .x(function(d,i) { return (i+1)*barWidth-barWidth/2; })
   .y(function(d) {
