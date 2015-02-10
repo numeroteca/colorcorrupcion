@@ -18,12 +18,12 @@
 parseDay = d3.time.format("%Y-%m-%d").parse;
 parse = d3.time.format("%m-%Y").parse;	
 
-d3.json("data/total20132014final.json", function(megajason) { //2013total.json
+d3.json("data/total20132014.json", function(megajason) { //2013total.json
 
 console.log(megajason);//TODO reorder by date
 
 var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros','Tribunal Constitucional','Podemos'];//parties to study
-var media = "Total";
+var media = "El Periodico";
 
 total = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
@@ -173,17 +173,18 @@ perMonthFinal = {'data':[],'sum':[]};
 perMonthFinal["media"] = media;
 
 for (var key = 0; key < stats["data"].length; key++) { //iterate through parties (codes)
+	perMonthFinal['sum'].push([]);
 	for (var i = 0; i < 12; i++) { //iterate through first year
 		if ( i == 0 ) {
 			perMonthFinal['data'].push([]); //creates array to store data in the first month
-			perMonthFinal['sum'].push({"y":0,"party":parties[key]}); //creates object to store data in the first month
+			perMonthFinal['sum'][key].push({"y":0,"x":0,"party":parties[key]}); //creates object to store data in the first month
 		}
 		perMonthFinal['data'][key].push({"y":perMonth['data'][key][0][0][i],"x":parse(i+1+"-"+years[0]),"month":i+1,"year":years[0],"party":parties[key]});
-		perMonthFinal['sum'][key]['y'] += perMonth['data'][key][0][0][i]; //acumulates total data per party
+		perMonthFinal['sum'][key][0]['y'] += perMonth['data'][key][0][0][i]; //acumulates total data per party
 	}
 	for (var i = 0; i < 12; i++) { //iterate through first year
 		perMonthFinal['data'][key] = perMonthFinal['data'][key].concat({"y":perMonth['data'][key][1][0][i],"x":parse(i+1+"-"+years[1]),"month":i+1,"year":years[1],"party":parties[key]});
-		perMonthFinal['sum'][key]['y'] += perMonth['data'][key][1][0][i]; //acumulates total data per party
+		perMonthFinal['sum'][key][0]['y'] += perMonth['data'][key][1][0][i]; //acumulates total data per party
 	}
 }
 console.log("perMonthFinal",perMonthFinal);
@@ -194,6 +195,7 @@ var url = 'data:text/json;charset=utf8,' + encodeURIComponent(printThis); //save
 window.open(url, '_blank');
 window.focus();
 });
+
     </script>
   </body>
 </html>
