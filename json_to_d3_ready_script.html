@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>PageOneX Color Corrupción</title>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
+    <script type="text/javascript" src="js/d3.min.js"></script>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?1.29.1"></script>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.time.js?1.29.1"></script>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?1.29.1"></script>
@@ -18,12 +18,12 @@
 parseDay = d3.time.format("%Y-%m-%d").parse;
 parse = d3.time.format("%m-%Y").parse;	
 
-d3.json("data/total20132014.json", function(megajason) { //2013total.json
+d3.json("data/total201320142015.json", function(megajason) { //2013total.json
 
-console.log(megajason);//TODO reorder by date
+console.log('megajason',megajason);//TODO reorder by date
 
-var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros','Tribunal Constitucional','Podemos'];//parties to study
-var media = "El Periodico";
+var parties = ['PP','PSOE','CiU','Casa Real','Bankia','UGT-A y CCOO','Otros','Tribunal Constitucional','Podemos']; //parties to study
+var media = "Ara";
 
 total = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
@@ -31,7 +31,6 @@ for ( var i = 0; i < parties.length; i++ ) {
 }
 total["media"] = media;
 console.log("total",total);
-
 
 for (var key in megajason) { //itera por la unica matriz que hay: data
 	var test = (megajason[key]);
@@ -69,16 +68,16 @@ for ( var i = 0; i < total.length; i++ ){
 		return new Date(a.date) - new Date(b.date);
 	});
 }
-console.log("total['data'][0]",total['data'][0]);
+console.log("PP data per day: total['data'][0]",total['data'][0]);
 
-var years = ['2013','2014'];
+var years = ['2013','2014','2015'];
 var sumMonth = [[],[],[],[],[],[],[],[],[],[],[],[]];
-var sumYear = [0,0];
+var sumYear = [0,0,0];
 var countDays = [0,0];
 
 var stats = {"data":[]};
 for ( var i = 0; i < parties.length; i++ ) {
-	stats["data"].push([[],[]]);
+	stats["data"].push([[],[],[]]);
 }
 stats["media"] = media;
 
@@ -173,18 +172,29 @@ perMonthFinal = {'data':[],'sum':[]};
 perMonthFinal["media"] = media;
 
 for (var key = 0; key < stats["data"].length; key++) { //iterate through parties (codes)
-	perMonthFinal['sum'].push([]);
+	perMonthFinal['sum'].push([]); //creates object to store total sums for each party (code)
 	for (var i = 0; i < 12; i++) { //iterate through first year
 		if ( i == 0 ) {
 			perMonthFinal['data'].push([]); //creates array to store data in the first month
 			perMonthFinal['sum'][key].push({"y":0,"x":0,"party":parties[key]}); //creates object to store data in the first month
 		}
-		perMonthFinal['data'][key].push({"y":perMonth['data'][key][0][0][i],"x":parse(i+1+"-"+years[0]),"month":i+1,"year":years[0],"party":parties[key]});
+		perMonthFinal['data'][key].push(
+			{"y":perMonth['data'][key][0][0][i],"x":parse(i+1+"-"+years[0]),"month":i+1,"year":years[0],"party":parties[key]}
+		);
 		perMonthFinal['sum'][key][0]['y'] += perMonth['data'][key][0][0][i]; //acumulates total data per party
 	}
-	for (var i = 0; i < 12; i++) { //iterate through first year
-		perMonthFinal['data'][key] = perMonthFinal['data'][key].concat({"y":perMonth['data'][key][1][0][i],"x":parse(i+1+"-"+years[1]),"month":i+1,"year":years[1],"party":parties[key]});
+	console.log("iiiiii: ",i);
+	for (var i = 0; i < 12; i++) { //iterate through second year
+		perMonthFinal['data'][key] = perMonthFinal['data'][key].concat(
+			{"y":perMonth['data'][key][1][0][i],"x":parse(i+1+"-"+years[1]),"month":i+1,"year":years[1],"party":parties[key]}
+		);
 		perMonthFinal['sum'][key][0]['y'] += perMonth['data'][key][1][0][i]; //acumulates total data per party
+	}
+	for (var i = 0; i < 3; i++) { //iterate through third year
+		perMonthFinal['data'][key] = perMonthFinal['data'][key].concat(
+			{"y":perMonth['data'][key][2][0][i],"x":parse(i+1+"-"+years[2]),"month":i+1,"year":years[2],"party":parties[key]}
+		);
+		perMonthFinal['sum'][key][0]['y'] += perMonth['data'][key][2][0][i]; //acumulates total data per party
 	}
 }
 console.log("perMonthFinal",perMonthFinal);

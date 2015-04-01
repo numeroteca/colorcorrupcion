@@ -176,7 +176,8 @@ svg.selectAll("text")
         //return i * (w / dataset[0].length);
         return x(d.x);
    })
-   .attr("y", 15);
+   .attr("y", 15)
+   .style("font-size","8px");
 
 //Creates groups for codes. Every rectangle with a color (=code or party) is in a svg group
 groups = svg.selectAll(".party").data(dataset);
@@ -260,7 +261,7 @@ d3.select(".explain").remove();
     .text(media);
 
 //Sum bar
-ySum.domain([0,135]);
+ySum.domain([0,140]);
 
 dataSum = sum;
 stack(dataSum);
@@ -326,6 +327,8 @@ var datosCIS = [
 	{x:"2014-10-01",y:42.3},
 	{x:"2014-11-01",y:63.8},
 	{x:"2014-12-01",y:60.0},
+	{x:"2015-01-01",y:55.5},
+	{x:"2015-02-01",y:48.5},
 ]
 //console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
 //console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));

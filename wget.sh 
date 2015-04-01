@@ -35,6 +35,11 @@ file[19]=corrupcion-espana-agosto-2014/export.json
 file[20]=corrupcion-espana-septiembre-2014/export.json
 file[21]=corrupcion-espana-octubre-2014/export.json
 file[22]=corrupcion-espana-noviembre-2014/export.json
+file[23]=corrupcion-espana-diciembre-2014/export.json
+
+file[24]=corrupcion-espana-enero-2015/export.json
+file[25]=corrupcion-espana-febrero-2015/export.json
+file[26]=corrupcion-espana-marzo-2015/export.json
 
 for (( i = 0 ; i < ${#file[@]} ; i++ ))
 do
