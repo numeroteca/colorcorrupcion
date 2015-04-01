@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-		<title>Color Corrupci&oacute;n</title>
+		<title>El Color de la Corrupci&oacute;n | numeroteca.org</title>
 		<script type="text/javascript" src="js/d3.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
 		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<style type="text/css">
-
-		svg {
-			width: 1300px;
-			height: 400px;
-			border: solid 1px #ccc;
-			font: 10px sans-serif;
-			shape-rendering: crispEdges;
-		}
-		rect:hover {
-			cursor:pointer;
-			opacity: 0.4;
-		}
-		.rule line:hover {
-			stroke:#000 !important;
-			cursor:pointer;
-		}
-		.cis-line:hover {
-			stroke:#444;
-			cursor:pointer;
-		}
-
-    </style>
-  </head>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<meta http-equiv="content-type" content="text/html"/>
+		<meta name="description" content="archiving thoughts and images" />
+		<meta charset="utf-8">
+		<!-- generic meta -->
+		<meta content="numeroteca" name="author" />
+		<meta name="title" content="El color de la corrupción | numeroteca.org" />
+		<meta content="Análisis de la cobertura sobre corrupción en portadas de prensa en España" />
+		<meta content="corrupción, corruption, portadas, periódicos, españa, spain" name="keywords" />
+		<!-- facebook meta -->
+		<meta property="og:title" content="El color de la corrupción en la prensa española" />
+		<meta property="og:type" content="article" />
+		<meta property="og:description" content="Análisis de la cobertura sobre corrupción en portadas de prensa en España." />
+		<meta content="corrupción, corruption, portadas, periódicos, españa, spain" />
+		<meta property="og:url" content="http://numeroteca.org/colorcorrupcion" />
+		<!-- twitter meta -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@numeroteca">
+		<meta name="twitter:title" content="#ColorCorrupcion: Análisis de la cobertura sobre corrupción en portadas de prensa en España" />
+		<meta name="twitter:description" content="Análisis de la cobertura sobre corrupción en portadas de prensa en España #ColorCorrupción." />
+		<meta name="twitter:creator" content="@numeroteca">
+		<meta name="twitter:image:src" content="http://numeroteca.org/colorcorrupcion/img/colorcorrupcion-201301-201503.png">
+		<meta property="twitter:account_id" content="1494951285" />
+</head>
   <body class="container-fluid">
   	<div class="row">
   		<div class="col-md-12">
-				<h1>El Color de la Corrupci&oacute;n
-				</h1>
-				<p>Cobertura de corrupci&oacute;n en portadas de prensa.</p>
-				<h2>Superficie dedicada en portada a casos de corrupci&oacute;n</h2>
-				<p>Clasificaci&oacute;n por partido pol&iacute;tico o instituci&oacute;n. Datos mensuales 2013-2015.</p>
+				<h1>El Color de la Corrupci&oacute;n</h1>
+				<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://numeroteca.org/colorcorrupcion" data-text="#ColorCorrupcion: Análisis de la cobertura sobre corrupción en portadas de prensa en España" data-via="numeroteca" data-lang="es">Twittear</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> Cobertura de corrupci&oacute;n en portadas de prensa.</p>
+				<h2>Superficie dedicada en portada a casos de corrupci&oacute;n. 2013-2015</h2>
+				<p>Clasificaci&oacute;n por partido pol&iacute;tico o instituci&oacute;n. Datos mensuales.</p>
 				<h5>Leyenda: 
 					<span class="label" style="background-color:blue">PP</span> 
 					<span class="label" style="background-color:red">PSOE</span> 
@@ -46,7 +48,8 @@
 					<span class="label" style="background-color:lime">Bankia</span> 
 					<span class="label" style="background-color:#FBBBB9">UGT-A y CCOO</span>
 					<span class="label" style="background-color:#9e398b">Podemos</span>
-					<span class="label" style="background-color:grey">Otros</span> L&iacute;nea: Corrupci&oacute;n y fraude como problema (Bar&oacute;metro CIS)
+					<span class="label" style="background-color:grey">Otros</span>
+					<img src="img/cis-line.png"> Corrupci&oacute;n y fraude como problema (Bar&oacute;metro CIS)
 				</h5>
 				<ul class="nav nav-pills" role="menu">
 					<li class="disabled"><a href="#">Selecciona un peri&oacute;dico</a></li>
@@ -369,21 +372,33 @@ svg.append('svg:path')
 
 });
 });//end on click
-    		</script>
-    		
-    	<p>M&aacute;s informaci&oacute;n sobre este proyecto en <a href="http://colorcorrupcion.tumblr.com/">colorcorrupcion.tumblr.com/</a> y en <a href="http://numeroteca.org/tag/colorcorrupcion/">numeroteca.org > colororrupci&oacute;n</a><br>
-    	</p>
-    	<h3>Datos</h3>
-    	<p>Puedes ver todos lo meses codificados en <a href="http://pageonex.com/threads/search_by_category?q=colorcorrupci%C3%B3n">PageOneX > Colorcorrupci&oacute;n.</a><br><img src="http://numeroteca.org/wp-content/uploads/2014/05/colorcorrupcion-primera-mitad-a%C3%B1o-2013-1024x61.jpg"></p>
-    	<p><strong>2015</strong> <a href="http://pageonex.com/numeroteca/corrupcion-espana-enero-2015/">Enero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-febrero-2015/">Febrero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-marzo-2015/">Marzo</a>
+</script>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-7">
+  <h3>Sobre el proyecto</h3>
+	<p>El color de la corrupci&oacute;n es un proyecto de investigaci&oacute;n para analizar y visualizar la atenci&oacute;n que dedican los medios de comunicaci&oacute;n de masas al tema de la corrupci&oacute;n en Espa&ntilde;a. Se analizan con PageOneX.com las portadas de los principales peri&oacute;dicos como medida de la importancia que otorgan a los esc&aacute;ndalos de corrupci&oacute;n de los diferentes partidos e instituciones.</p>
+	<p>Las portadas son el lugar donde los peri&oacute;dicos condensan la informaci&oacute;n m&aacute;s importante del d&iacute;a y marcan la agenda de actualidad del d&iacute;a siguiente para radios, televisiones y redes sociales en Internet. La selecci&oacute;n de noticias y su enfoque en la portada configuran su l&iacute;nea editorial, m&aacute;s casi que su l&iacute;nea editorial oficial. &iquest;C&oacute;mo se han alineado pol&iacute;ticamente? &iquest;Qu&eacute; noticias han silenciado y cu&aacute;les amplificado? </p>
+			<p>M&aacute;s informaci&oacute;n sobre este proyecto en <a href="http://colorcorrupcion.tumblr.com/">colorcorrupcion.tumblr.com/</a> y en <a href="http://numeroteca.org/tag/colorcorrupcion/">numeroteca.org > colororrupci&oacute;n</a></p>
 
-<p><strong>2014</strong> <a href="http://pageonex.com/numeroteca/corrupcion-espana-enero-2014/">Enero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-febrero-2014/">Febrero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-marzo-2014/">Marzo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-abril-2014/">Abril</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-mayo-2013/">Mayo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-junio-2014/">Junio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-julio-2014/">Julio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-agosto-2014/&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGIpHW6ywyWzYy_ETFAc84XUnvoOg">Agosto</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-septiembre-2014/">Septiembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-octubre-2014/">Octubre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-noviembre-2014/">Noviembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-diciembre-2014/">Diciembre</a></p>
-
-<p><strong>2013</strong> <a href="http://pageonex.com/numeroteca/corrupcion-spain-enero-2013/">Enero</a>&nbsp;<a href="http://pageonex.com/numeroteca/colorcorrupcion-espana-febrero-2013/">Febrero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-marzo-2013/">Marzo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-abril-2013/">Abril</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-mayo-2013/">Mayo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-junio-2013/">Junio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-julio-2013/">Julio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-agosto-2013/">Agosto</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-septiembre-2013/">Septiembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-octubre-2013/">Octubre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-noviembre-2013/">Noviembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-diciembre-2013/">Diciembre</a>&nbsp;</p>
-    	<p>Datos <a href="http://www.cis.es/opencms/-Archivos/Indicadores/documentos_html/TresProblemas.html">Bar&oacute;metro CIS</a>.</p>
-    	<p>Visualizaci&oacute;n de datos realizada por Pablo Rey Maz&oacute;n. numeroteca.org
-    	
-    	</p>
+  <h3>Art&iacute;culos relacionados</h3>
+  <a href="http://numeroteca.org/2014/05/08/menos-cobertura-pero-cuando-desperto-la-corrupcion-todavia-estaba-alli/">Cuando despert&oacute; la corrupci&oacute;n todav&iacute;a estaba all&iacute;
+</a>(numeroteca.org. 2014)<br>
+	<a href="http://numeroteca.org/2013/06/18/newspaper-front-page-analysis-how-do-they-tell-the-story/">Newspaper Front Page Analysis: How Do They Tell the Story?</a> (Accountability Technologies: Tools for Asking Hard Questions. Book. 2013)<br>
+  <a href="http://numeroteca.org/2013/07/09/el-color-de-la-corrupcion/">El color de la corrupci&oacute;n, en peri&oacute;dicos espa&ntilde;oles y catalanes</a> (revista Capçalera del Col·legi de Periodistes de Catalunya. 2013)<br>
+  <a href="https://civic.mit.edu/blog/pablo/3-steps-to-measure-the-corruption-coverage-in-spain">3 steps to measure the corruption coverage in Spain</a> (civic.mit.edu. 2013)<br>
+	<h3>Datos</h3>
+	<p>Puedes ver todos lo meses codificados en <a href="http://pageonex.com/threads/search_by_category?q=colorcorrupci%C3%B3n">PageOneX > Colorcorrupci&oacute;n.</a><br><img src="http://numeroteca.org/wp-content/uploads/2014/05/colorcorrupcion-primera-mitad-a%C3%B1o-2013-1024x61.jpg"></p>
+  	<p><strong>2015</strong> <a href="http://pageonex.com/numeroteca/corrupcion-espana-enero-2015/">Enero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-febrero-2015/">Febrero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-marzo-2015/">Marzo</a>
+	<p><strong>2014</strong> <a href="http://pageonex.com/numeroteca/corrupcion-espana-enero-2014/">Enero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-febrero-2014/">Febrero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-marzo-2014/">Marzo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-abril-2014/">Abril</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-mayo-2013/">Mayo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-junio-2014/">Junio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-julio-2014/">Julio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-agosto-2014/&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGIpHW6ywyWzYy_ETFAc84XUnvoOg">Agosto</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-septiembre-2014/">Septiembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-octubre-2014/">Octubre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-noviembre-2014/">Noviembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-diciembre-2014/">Diciembre</a></p>
+	<p><strong>2013</strong> <a href="http://pageonex.com/numeroteca/corrupcion-spain-enero-2013/">Enero</a>&nbsp;<a href="http://pageonex.com/numeroteca/colorcorrupcion-espana-febrero-2013/">Febrero</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-marzo-2013/">Marzo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-abril-2013/">Abril</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-mayo-2013/">Mayo</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-junio-2013/">Junio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-julio-2013/">Julio</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-agosto-2013/">Agosto</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-septiembre-2013/">Septiembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-octubre-2013/">Octubre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-noviembre-2013/">Noviembre</a>&nbsp;<a href="http://pageonex.com/numeroteca/corrupcion-espana-diciembre-2013/">Diciembre</a>
+	</p>
+	<p>El peri&oacute;dico La Gaceta de publicarse en papel en diciembre de 2013.</p>
+  	<p>Datos <a href="http://www.cis.es/opencms/-Archivos/Indicadores/documentos_html/TresProblemas.html">Bar&oacute;metro CIS</a>. Se han extrapolado los datos para agosto de 2013 y 2014.</p>
+  	<hr>
+  	<p>Visualizaci&oacute;n de datos realizada por Pablo Rey Maz&oacute;n. <a href="http://numeroteca.org">numeroteca.org</a> <a href="https://twitter.com/numeroteca/">@numeroteca. C&oacute;digo disponible en <a href="https://github.com/numeroteca/colorcorrupcion">GitHub</a>
+  	</p>
     	</div>
     </div>
   </body>

@@ -1,0 +1,23 @@
+.cis-line {
+	shape-rendering: geometricprecision;
+}
+
+svg {
+	width: 1300px;
+	height: 400px;
+	border: solid 1px #ccc;
+	font: 10px sans-serif;
+	shape-rendering: crispEdges;
+}
+rect:hover {
+	cursor:pointer;
+	opacity: 0.4;
+}
+.rule line:hover {
+	stroke:#000 !important;
+	cursor:pointer;
+}
+.cis-line:hover {
+	stroke:#444;
+	cursor:pointer;
+}
