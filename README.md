@@ -1,5 +1,6 @@
 # colorcorrupcion
 Análisis de los datos sobre cobertura de corrupción en España recopilados en PageOneX
+http://numeroteca.org/colorcorrupcion
 
 # How to
 
@@ -7,7 +8,7 @@ Análisis de los datos sobre cobertura de corrupción en España recopilados en 
 
 Execute in terminal de bash file:
 
-  ./wget.sh\
+`./wget.sh\`
   
 ## 2. Merge all the downloaded json files
 
@@ -15,12 +16,22 @@ Given colorcorrupcion-1.json and colorcorrupcion-0.json it is possible to merge 
 
 Merge two files:
 
-   jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' colorcorrupcion-1.json colorcorrupcion-0.json > colorJanFeb2015.json
+`jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' colorcorrupcion-1.json colorcorrupcion-0.json > colorJanFeb2015.json`
 
 (In this specific case, we are merging January and February 2013 first as February thread is partially filled with data, the other part is in January thread).  
   
 Merge all the files which name start with "color":
 
-   jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' color*.json > data/total201320142015.json
+`jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' color*.json > data/total201320142015.json`
   
 Rename newspaper names with accents inside the file: "El País" to "El País".
+
+## 3. Generate json files
+
+One file per each media must be generated with the file `json_to_d3_ready_script.html`
+
+Change "var media" to the name of the newspaper that applies and save the file as .json
+
+## 4. Use
+
+Navigate to `index.html` or / where the files are stored and enjoy the data visualization.
