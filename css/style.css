@@ -21,3 +21,6 @@ rect:hover {
 	stroke:#444;
 	cursor:pointer;
 }
+#datavis {
+	background:no-repeat url("../img/img-background.png");
+}
