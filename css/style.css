@@ -17,8 +17,11 @@ rect:hover {
 	stroke:#000 !important;
 	cursor:pointer;
 }
+circle, .cis-line {
+ shape-rendering:auto;
+}
 circle:hover {
-	fill:#444;
+	fill:#000;
 	cursor:pointer;
 }
 
