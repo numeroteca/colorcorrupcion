@@ -17,10 +17,11 @@ rect:hover {
 	stroke:#000 !important;
 	cursor:pointer;
 }
-.cis-line:hover {
-	stroke:#444;
+circle:hover {
+	fill:#444;
 	cursor:pointer;
 }
+
 #datavis {
 	background:no-repeat url("../img/img-background.png");
 }
