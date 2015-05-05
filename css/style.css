@@ -38,3 +38,13 @@ div.tooltip {
   border-radius: 4px;
   pointer-events: none;
 }
+
+body { padding-top: 50px ; }
+
+h2:before {
+  display: block;
+  content: " ";
+  margin-top: -105px;
+  height: 105px;
+  visibility: hidden;
+}
