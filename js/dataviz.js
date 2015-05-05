@@ -17,7 +17,7 @@ var w = 1300,
     var formato = d3.time.format("%m-%Y");
     //parse = d3.time.format("%Y-%m-%d").parse
     var yCIS = d3.scale.linear().range([0, h - p[0] - p[2]]); //scale for CIS data
-    var ySum = d3.scale.linear().range([0, h2]); //scale for CIS data
+    var ySum = d3.scale.linear().range([0, h2 - 10]); //scale for CIS data
     
 //Adds the div that is used for the tooltip
 var div = d3.select("body").append("div")
