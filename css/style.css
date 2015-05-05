@@ -28,3 +28,13 @@ circle:hover {
 #datavis {
 	background:no-repeat url("../img/img-background.png");
 }
+div.tooltip {
+  position: absolute;
+  width: 180px;
+  padding: 8px;
+  font: 12px sans-serif;
+  background: #ddd;
+  border: 0px;
+  border-radius: 4px;
+  pointer-events: none;
+}
