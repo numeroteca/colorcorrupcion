@@ -79,8 +79,10 @@
 
 //initially based on http://bl.ocks.org/mbostock/1134768 and http://bl.ocks.org/anupsavvy/9513382
 var w = 1300,
-    h = 400,
-    p = [50, 170, 30, 20],
+    h = 800,
+    p = [50, 80, 430, 50],
+    p2 = [100, 50, 50, 20],
+    h2 = h - p[0] - p[2] - p2[0] - p2[2],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
     colors = ["blue","red", "orange","darkgreen","lime","#FBBBB9","grey","grey","#9e398b"],
@@ -92,13 +94,14 @@ var w = 1300,
     var formato = d3.time.format("%m-%Y");
     //parse = d3.time.format("%Y-%m-%d").parse
     var yCIS = d3.scale.linear().range([0, h - p[0] - p[2]]); //scale for CIS data
-    var ySum = d3.scale.linear().range([0, h - p[0] - p[2]]); //scale for CIS data
+    var ySum = d3.scale.linear().range([0, h2]); //scale for CIS data
     
 //Adds the div that is used for the tooltip
 var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
-    
+
+//Adds datavis div to insert the svg
 var svg = d3.select("#datavis").append("svg:svg")
     .attr("width", w)
     .attr("height", h)
@@ -108,8 +111,21 @@ var svg = d3.select("#datavis").append("svg:svg")
 //Set up stack method
 var stack = d3.layout.stack();
 
-//console.log("aaa");
+//Adds boundary tonewspaper
+svg.append("rect")
+	.attr("x", 140)
+  .attr("y", 40 )
+  .attr("width", 180)
+  .attr("height", h2 + p2[2])
+  .attr("class","boundary")
+  .style("stroke","#bbb")
+  .style("fill","#fefefe");
 
+svg.append("svg:text")
+  .attr("x", 150)
+  .attr("y", 274 )
+  .text("Total acumulado de todo el periodo");
+   
 //var str = "data/perMonthElMundo.json";	
 //console.log("str",str);
 
@@ -181,7 +197,11 @@ y.domain([
 ]); //usa la ultima array, la que tiene los valores de las otras ya acumulados para calcular el maximos valos de y
 
 //Labels in x axis
-svg.selectAll("text")
+svg.selectAll(".xlabels").remove();
+
+var xlabels = svg.append("svg:g").attr("class","xlabels");
+
+xlabels.selectAll("text")
    .data(dataset[0])
    .enter()
    .append("text")
@@ -263,28 +283,32 @@ d3.select(".explain").remove();
   var explain = svg.append("svg:g").attr("class","explain");
   
   explain.append("svg:text")
-      .attr("x", w - p[2] -120)
-      .attr("y", -h + p[0] + 30)
-      .text("Numero de portadas/mes");
+      .attr("x", 40)
+      .attr("y", -30)
+      .text("Numero de portadas/mes. 1 = superficie 1 portada")
+      .style("text-anchor", "start")
+      .attr("transform", function(d) {
+         return "rotate(-90)"
+     });
   explain.append("svg:text")
-      .attr("x", w - p[2] -120)
-      .attr("y", -h + p[0] +50 )
-      .text("1 = superficie 1 portada");
-  explain.append("svg:text")
-      .attr("x", w - p[2] -120)
-      .attr("y", -h + p[0] + 70 )
-      .text("% respuestas CIS");
-  
+      .attr("x", 60)
+      .attr("y", w - p[1] )
+      .text("Porcentaje de respuestas Barómetro CIS")
+      .style("text-anchor", "start")
+      .attr("transform", function(d) {
+         return "rotate(-90)"
+     	});
+
 	//Adds medianame to chart
 	d3.select(".medianame").remove();
 	
   var mediaName = svg.append("svg:text")
     .attr("x", 50)
-    .attr("y", -h + p[0])
+    .attr("y", -h + p [2] + 5)
     .attr("dy", "1em")
     .attr("class", "medianame")
     .attr("text-anchor", "right")
-    .style("font-size","16px")
+    .style("font-size","20px")
     .text(media);
   
   //Adds media logo to chart title
@@ -296,7 +320,7 @@ d3.select(".explain").remove();
   var mediaLogo = svg.append("svg:image")
   	.attr("class", "medialogo")
    .attr('x',150)
-   .attr('y',-h + p[0] )
+   .attr('y', p[0] )
    .attr('width', 160)
    .attr('height', 20)
    .attr("xlink:href","img/" + replacement(media) + ".png")
@@ -313,7 +337,7 @@ console.log("dataSumStack",dataSum);
 
 //Adds the sum stacked bar
 groupsSum = svg.selectAll(".sum").data(dataSum);
-groupsSum.enter().append("g") //adds groups and asig color to every fill
+groupsSum.enter().append("g") //adds groups and asign color to every fill
         .attr("class","sum")
         .style("fill",function(d,i) {
             return color(i);
@@ -327,10 +351,9 @@ rectSum = groupsSum.selectAll("rect").data(function(d){return d;});
 
 rectSum.enter()
   .append("rect")
-  //.attr("x",function(d,i) { return i*w/dataset[0].length-20; })
-  .attr("x", w - p[2] -120)
-  .attr("y", function(d) { return -ySum(d.y0) - ySum(d.y); })
-  .attr("width",60)
+  .attr("x", 154)
+  .attr("y", function(d) { return -ySum(d.y0) - ySum(d.y) + h2 + p2[2] + 30; })
+  .attr("width",150)
   .attr("height", function(d) { return ySum(d.y); })
   .style("fill-opacity",1)
   //The tooltip
@@ -343,13 +366,7 @@ rectSum.enter()
 	.on("mouseout", function(d) {
     div.transition().duration(500).style("opacity", 0);
 	});
-
-svg.append("svg:text")
-  .attr("x", w - p[2] -100)
-  .attr("y", 15 )
-  .text("Total");
-
-
+	
 //Data from CIS on corruption perception
 yCIS.domain([0,70]);
 var datosCIS = [
@@ -402,7 +419,10 @@ svg.append('svg:path')
   .attr('stroke-width', 2)
   .attr('fill', 'none');
 
-svg.selectAll("circle")
+//sets group with CIS circles
+var circles = svg.append('g').attr('id','circles');
+
+circles.selectAll("circle")
 	.data(datosCIS)
 	.enter().append("circle")
 	.attr("fill", "#666")
