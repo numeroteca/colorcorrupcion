@@ -80,7 +80,7 @@
 //initially based on http://bl.ocks.org/mbostock/1134768 and http://bl.ocks.org/anupsavvy/9513382
 var w = 1300,
     h = 400,
-    p = [20, 170, 30, 20],
+    p = [50, 170, 30, 20],
     x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]), //https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeRoundBands
     y = d3.scale.linear().range([0, h - p[0] - p[2]]),
     colors = ["blue","red", "orange","darkgreen","lime","#FBBBB9","grey","grey","#9e398b"],
@@ -275,16 +275,31 @@ d3.select(".explain").remove();
       .attr("y", -h + p[0] + 70 )
       .text("% respuestas CIS");
   
+	//Adds medianame to chart
 	d3.select(".medianame").remove();
 	
   var mediaName = svg.append("svg:text")
     .attr("x", 50)
-    .attr("y", -h + p[0] + 15)
+    .attr("y", -h + p[0])
     .attr("dy", "1em")
     .attr("class", "medianame")
     .attr("text-anchor", "right")
     .style("font-size","16px")
     .text(media);
+  
+  //Adds media logo to chart title
+  d3.select(".medialogo").remove();
+  
+  //replaces spaces and .
+	var replacement = function(d) { return d.replace(/\s+/g, '').replace(/\.+/g, '').toLowerCase();};
+
+  var mediaLogo = svg.append("svg:image")
+  	.attr("class", "medialogo")
+   .attr('x',150)
+   .attr('y',-h + p[0] )
+   .attr('width', 160)
+   .attr('height', 20)
+   .attr("xlink:href","img/" + replacement(media) + ".png")
 
 //Sum bar
 ySum.domain([0,140]);
