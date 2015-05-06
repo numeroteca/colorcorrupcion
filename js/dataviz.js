@@ -36,7 +36,7 @@ var stack = d3.layout.stack();
 
 //Adds boundary tonewspaper
 svg.append("rect")
-	.attr("x", 140)
+	.attr("x", 135)
   .attr("y", 40 )
   .attr("width", 180)
   .attr("height", h2 + p2[2])
@@ -45,7 +45,7 @@ svg.append("rect")
   .style("fill","#fefefe");
 
 svg.append("svg:text")
-  .attr("x", 150)
+  .attr("x", 140)
   .attr("y", 274 )
   .text("Total acumulado de todo el periodo");
    
@@ -218,6 +218,7 @@ d3.select(".explain").remove();
       .attr("y", w - p[1] )
       .text("Porcentaje de respuestas Barómetro CIS")
       .style("text-anchor", "start")
+      .attr("font-size","12px")
       .attr("transform", function(d) {
          return "rotate(-90)"
      	});
@@ -274,7 +275,7 @@ rectSum = groupsSum.selectAll("rect").data(function(d){return d;});
 
 rectSum.enter()
   .append("rect")
-  .attr("x", 154)
+  .attr("x", 150)
   .attr("y", function(d) { return -ySum(d.y0) - ySum(d.y) + h2 + p2[2] + 30; })
   .attr("width",150)
   .attr("height", function(d) { return ySum(d.y); })
