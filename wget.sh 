@@ -40,10 +40,12 @@ file[23]=corrupcion-espana-diciembre-2014/export.json
 file[24]=corrupcion-espana-enero-2015/export.json
 file[25]=corrupcion-espana-febrero-2015/export.json
 file[26]=corrupcion-espana-marzo-2015/export.json
+file[27]=corrupcion-espana-abril-2015/export.json
+file[28]=corrupcion-espana-mayo-2015/export.json
 
 for (( i = 0 ; i < ${#file[@]} ; i++ ))
 do
-        wget -O colorcorrupcion-$i.json $mirror/${file[$i]}
+	wget -O colorcorrupcion-$i.json $mirror/${file[$i]}
 done
 
 unset file

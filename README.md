@@ -6,9 +6,11 @@ http://numeroteca.org/colorcorrupcion
 
 ## 1. Download data from PageOneX
 
-Execute in terminal de bash file:
+Execute in terminal the bash file:
 
 `./wget.sh\`
+
+If it doesn't work for you: just copy and paste the content of the script wget.sh.
   
 ## 2. Merge all the downloaded json files
 
@@ -19,12 +21,14 @@ Merge two files:
 `jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' colorcorrupcion-1.json colorcorrupcion-0.json > colorJanFeb2015.json`
 
 (In this specific case, we are merging January and February 2013 first as February thread is partially filled with data, the other part is in January thread).  
+
+We remove then remove colorcorrupcion-1.json colorcorrupcion-0.json, as their data have been merged in colorJanFeb2015.json.
   
 Merge all the files which name start with "color":
 
 `jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' color*.json > data/total201320142015.json`
   
-Rename newspaper names with accents inside the file: "El País" to "El País".
+Rename newspaper names with accents inside the file. Ex: "El País" to "El País".
 
 ## 3. Generate json files
 
