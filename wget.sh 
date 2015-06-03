@@ -7,7 +7,10 @@
 #
 # Based on script by Sean O'Donnell <sean@seanodonnell.com>
 # http://code.seanodonnell.com/?id=53
-#################### 
+#
+# Execute it from directory colorcorrupcion/data
+#
+####################
 
 mirror=http://pageonex.com/numeroteca
 
@@ -50,4 +53,11 @@ done
 
 unset file
 unset mirror
+
+# merges downloaded files
+jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' colorcorrupcion-1.json colorcorrupcion-0.json > colorJanFeb2015.json
+rm colorcorrupcion-0.json
+rm colorcorrupcion-1.json
+jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' color*.json > total201320142015.json
+
 exit
