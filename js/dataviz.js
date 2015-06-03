@@ -321,6 +321,8 @@ var datosCIS = [
 	{x:"2015-01-01",y:55.5},
 	{x:"2015-02-01",y:48.5},
 	{x:"2015-03-01",y:50.8},
+	{x:"2015-04-01",y:48.6},
+	{x:"2015-05-01",y:50.8},
 ]
 //console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
 //console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));

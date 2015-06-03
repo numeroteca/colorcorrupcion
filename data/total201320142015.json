@@ -28500,6 +28500,76 @@
       "Total": {
         "Podemos": 0,
         "Bankia": 0,
+        "Otros": 0.06845849488020678,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0.0030446829984402237,
+        "PP": 0
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.47920946416144744,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0.021312780989081567,
+        "PP": 0
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
         "Otros": 0,
         "UGT-A y CCOO": 0,
         "Casa Real": 0,
@@ -28512,16 +28582,14 @@
       "Total": {
         "Podemos": 0,
         "Bankia": 0,
-        "Otros": 0,
+        "Otros": 0.0017771150213738939,
         "UGT-A y CCOO": 0,
         "Casa Real": 0,
         "CiU": 0,
         "PSOE": 0,
-        "PP": 0
-      }
-    },
-    "2015-05-22": {
-      "Total": {
+        "PP": 0.005929104477611941
+      },
+      "Ara": {
         "Podemos": 0,
         "Bankia": 0,
         "Otros": 0,
@@ -28530,10 +28598,222 @@
         "CiU": 0,
         "PSOE": 0,
         "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.012439805149617258,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.041503731343283584
+      }
+    },
+    "2015-05-22": {
+      "Total": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.008971144278606966,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.035302168666853866,
+        "PSOE": 0,
+        "PP": 0.05833512962980462
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.06279800995024876,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.04095522388059702
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.06492414752957551,
+        "PSOE": 0,
+        "PP": 0.021127348643006263
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.18219103313840157,
+        "PSOE": 0,
+        "PP": 0.12077452891487979
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.22548880597014925
       }
     },
     "2015-05-23": {
       "Total": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.006302788844621514,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.009826091430211558,
+        "PSOE": 0,
+        "PP": 0.004727905358385525
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.0441195219123506,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.02665553235908142,
+        "PSOE": 0,
+        "PP": 0.033095337508698676
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.04212710765239948,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Pais": {
         "Podemos": 0,
         "Bankia": 0,
         "Otros": 0,
@@ -28546,6 +28826,76 @@
     },
     "2015-05-24": {
       "Total": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.003328362660304205,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0.023298538622129435,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Pais": {
         "Podemos": 0,
         "Bankia": 0,
         "Otros": 0,
@@ -28566,10 +28916,150 @@
         "CiU": 0,
         "PSOE": 0,
         "PP": 0
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
       }
     },
     "2015-05-26": {
       "Total": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.002824137588229446,
+        "UGT-A y CCOO": 0.002729243858926856,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0.002646539499565436,
+        "PP": 0
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.019768963117606123,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0.019104707012487992,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0.018525776496958052,
+        "PP": 0
+      },
+      "El Pais": {
         "Podemos": 0,
         "Bankia": 0,
         "Otros": 0,
@@ -28582,6 +29072,76 @@
     },
     "2015-05-27": {
       "Total": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.05074150960575435
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.3551905672402804
+      },
+      "El Pais": {
         "Podemos": 0,
         "Bankia": 0,
         "Otros": 0,
@@ -28602,6 +29162,76 @@
         "CiU": 0,
         "PSOE": 0,
         "PP": 0
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
       }
     },
     "2015-05-29": {
@@ -28613,11 +29243,9 @@
         "Casa Real": 0,
         "CiU": 0,
         "PSOE": 0,
-        "PP": 0
-      }
-    },
-    "2015-05-30": {
-      "Total": {
+        "PP": 0.04639140914698025
+      },
+      "Ara": {
         "Podemos": 0,
         "Bankia": 0,
         "Otros": 0,
@@ -28626,6 +29254,138 @@
         "CiU": 0,
         "PSOE": 0,
         "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.029158358765683283
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.04024217118997912
+      },
+      "ABC": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.21332316491897044
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.04201616915422886
+      }
+    },
+    "2015-05-30": {
+      "Total": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.10200682187353828,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.16242761218919186
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.32835431235431234
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.37037675213675214,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.03339487179487179
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.12982553897180762
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.1718580375782881
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.2599090318388564
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0.2416641791044776,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.05122388059701492
       }
     },
     "2015-05-31": {
@@ -28637,7 +29397,67 @@
         "Casa Real": 0,
         "CiU": 0,
         "PSOE": 0,
+        "PP": 0.015496755821149533
+      },
+      "Ara": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
         "PP": 0
+      },
+      "El Periodico": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.033786290322580646
+      },
+      "La Vanguardia": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "La Razon": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Mundo": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0
+      },
+      "El Pais": {
+        "Podemos": 0,
+        "Bankia": 0,
+        "Otros": 0,
+        "UGT-A y CCOO": 0,
+        "Casa Real": 0,
+        "CiU": 0,
+        "PSOE": 0,
+        "PP": 0.05919424460431655
       }
     },
     "2015-04-16": {
