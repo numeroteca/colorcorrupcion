@@ -48,6 +48,11 @@ svg.append("svg:text")
   .attr("x", 140)
   .attr("y", 274 )
   .text("Total acumulado de todo el periodo");
+  
+svg.append("svg:text")
+  .attr("x", 910)
+  .attr("y", 254 )
+  .text("El Color de la Corrupción. montera34.com + numeroteca.org");
    
 //var str = "data/perMonthElMundo.json";	
 //console.log("str",str);
@@ -329,6 +334,8 @@ var datosCIS = [
 //console.log("ddd",w/(dataset[0].length));
 
 //Adds CIS line
+d3.select(".cis-line").remove();
+
 var barWidth = (w - p[1] - p[3])/(dataset[0].length);
 var lineFunc = d3.svg.line()
   .x(function(d,i) { return (i+1)*barWidth-barWidth/2; })
@@ -346,6 +353,7 @@ svg.append('svg:path')
   .attr('fill', 'none');
 
 //sets group with CIS circles
+d3.select("#circles").remove();
 var circles = svg.append('g').attr('id','circles');
 
 circles.selectAll("circle")
