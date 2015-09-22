@@ -328,6 +328,8 @@ var datosCIS = [
 	{x:"2015-03-01",y:50.8},
 	{x:"2015-04-01",y:48.6},
 	{x:"2015-05-01",y:50.8},
+	{x:"2015-06-01",y:47.1},
+	{x:"2015-07-01",y:43.7},
 ]
 //console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
 //console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));
@@ -336,7 +338,7 @@ var datosCIS = [
 //Adds CIS line
 d3.select(".cis-line").remove();
 
-var barWidth = (w - p[1] - p[3])/(dataset[0].length);
+var barWidth = (w - p[1] - p[3])/(dataset[0].length)-0.2; //TODO fix position of points. Calculate barwidth for good
 var lineFunc = d3.svg.line()
   .x(function(d,i) { return (i+1)*barWidth-barWidth/2; })
   .y(function(d) {
