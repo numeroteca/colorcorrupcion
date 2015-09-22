@@ -190,7 +190,7 @@ for (var key = 0; key < stats["data"].length; key++) { //iterate through parties
 		);
 		perMonthFinal['sum'][key][0]['y'] += perMonth['data'][key][1][0][i]; //acumulates total data per party
 	}
-	for (var i = 0; i < 5; i++) { //iterate through third year
+	for (var i = 0; i < 9; i++) { //iterate through third year
 		perMonthFinal['data'][key] = perMonthFinal['data'][key].concat(
 			{"y":perMonth['data'][key][2][0][i],"x":parse(i+1+"-"+years[2]),"month":i+1,"year":years[2],"party":parties[key]}
 		);
