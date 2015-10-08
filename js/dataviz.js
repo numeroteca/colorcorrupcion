@@ -330,6 +330,8 @@ var datosCIS = [
 	{x:"2015-05-01",y:50.8},
 	{x:"2015-06-01",y:47.1},
 	{x:"2015-07-01",y:43.7},
+	{x:"2015-08-01",y:41.7},//invented value
+	{x:"2015-07-01",y:39.5},
 ]
 //console.log("datosCIS[2]['x']",x(datosCIS[2]['x']));
 //console.log("yCIS(datosCIS[0]['y'])",yCIS(datosCIS[1]['y']));
@@ -365,7 +367,7 @@ circles.selectAll("circle")
 	.attr("cx", function(d,i) { return (i+1)*barWidth-barWidth/2; })
 	.attr("cy",function(d) { return -yCIS(d.y); })
 	.attr("r", function(d) { //do not display circle for months in august (invented values), radios = 0
-			if ( d.x == "2013-08-01" || d.x == "2014-08-01") {
+			if ( d.x == "2013-08-01" || d.x == "2014-08-01" || d.x == "2015-08-01") {
 				return "0";
 			} else {
 				return "5";
