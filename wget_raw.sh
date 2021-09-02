@@ -12,7 +12,7 @@
 #
 ####################
 
-mirror=http://localhost:3000/numeroteca
+mirror=http://pageonex.com/numeroteca
 
 file[0]=corrupcion-spain-enero-2013/
 file[1]=colorcorrupcion-espana-febrero-2013/
@@ -80,6 +80,8 @@ unset mirror
 # jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' colorcorrupcion-1.json colorcorrupcion-0.json > colorJanFeb2015.json
 # rm colorcorrupcion-0.json
 # rm colorcorrupcion-1.json
-jq -s 'reduce .[] as $dot ({}; .data += $dot.data)' color*.json > total2013-2016_raw.json
-
+# merges the areas
+jq -s 'reduce .[] as $dot ({}; .data += $dot.areas)' color*.json > total2013-2016_raw.json
+# merges the images. WARNING: images in February 2013 are repeated, as the first thread includes days from January and February 2013.
+jq -s 'reduce .[] as $dot ({}; .data += $dot.images)' color*.json > total2013-2016_img.json
 exit
