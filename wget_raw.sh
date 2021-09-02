@@ -12,7 +12,7 @@
 #
 ####################
 
-mirror=http://localhost:3000
+mirror=http://localhost:3000/numeroteca
 
 file[0]=corrupcion-spain-enero-2013/
 file[1]=colorcorrupcion-espana-febrero-2013/
